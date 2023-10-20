@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .text-comment {
+      @apply text-3xl font-bold text-red-600 text-center hover:text-blue-700
+  }
+  .label {
+    @apply block mb-2 text-[13px] sm:text-[15px] font-medium text-white dark:text-white
+  }
+  .title {
+    @apply block mb-2 font-[700] text-white text-[25px] sm:text-[35px] text-center
+  }
+  .btn-register{
+    @apply !text-white !mt-[15px] sm:!mt-[25px] !border-transparent !bg-gradient-to-r hover:!border-transparent !from-cyan-500 !to-blue-500 hover:!bg-gradient-to-bl hover:!text-white focus:!ring-4 focus:!outline-none focus:!ring-cyan-300 !font-medium !rounded-lg !text-[14px]  sm:!text-[17px] !text-center !mr-2 !mb-2 !h-[35px] sm:!h-[40px] !w-full !tracking-widest
+  }
+  .btn-cancel{
+    @apply !text-white mt-[5px] !border-transparent !bg-gradient-to-r hover:!border-transparent !from-orange-400 !to-red-600 hover:!bg-gradient-to-bl hover:!text-white focus:!ring-4 focus:!outline-none focus:!ring-orange-300 !font-medium !rounded-lg !text-[14px]  sm:!text-[17px] !text-center !mr-2 !mb-2 !h-[35px] sm:!h-[40px] !w-full !tracking-widest
+  }
+  .btn-reset{
+    @apply text-white border-transparent bg-gradient-to-r hover:border-transparent from-blue-700 to-purple-700 hover:bg-gradient-to-bl hover:text-white focus:ring-1 focus:outline-none focus:ring-orange-200 font-medium rounded-md text-[13px]  sm:text-[16px] text-center tracking-widest px-[10px]
+  }
+  .btn-add{
+    @apply !text-white my-[15px] !border-transparent !bg-gradient-to-r hover:!border-transparent !from-blue-700 !to-purple-700 hover:!bg-gradient-to-bl hover:!text-white !font-medium !rounded-lg !text-[11px]  sm:!text-[17px] !text-center !mr-2 !h-[30px] sm:!h-[40px] !w-full !tracking-widest 
+  }
+  .input{
+    @apply bg-gray-50 border border-gray-300 text-gray-900 text-xs sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-[8px] sm:p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
+  }
+  /* header */
+  .a-header{
+    @apply block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100
+  }
+  .p-header{
+    @apply block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700
+  }
+  .btn-menu{
+    @apply inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600
+  }
+  .drop-down-header{
+    @apply z-50 block my-4 text-base list-none bg-white rounded-lg 
+  }
+  .btn-darkMode{
+   @apply text-gray-500 border border-gray-300 md:ml-[12px] phone:mx-[12px] dark:border-gray-600 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none rounded-[50%] text-[14px] w-[40px] h-[40px]
+  }
+  /* Tabs */
+  .tabs{
+    @apply inline-block px-[11px] py-[9px] rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white
+  }
+  .tabs-active{
+    @apply inline-block px-[11px] py-[9px] text-white bg-blue-600 rounded-lg
+  }
+  /* Card */
+  .a-Card{
+    @apply inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800
+  }
+  .a-back{
+    @apply inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-blue-800
+  }
+  /* Carousel */
+  .img-Carousel{
+    @apply absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2
+  }
+  .btn-Carousel{
+    @apply absolute top-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer focus:outline-none
+  }
+}
