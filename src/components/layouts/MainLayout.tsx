@@ -3,9 +3,9 @@ import { Outlet } from "react-router-dom"
 
 export const MainLayout = () => {
     return (
-        <div>
+        <div className="m-auto">
             <Header />
-            <div className="dark:bg-[#111827]">
+            <div className="dark:bg-[#111827] pt-[75px]">
                 <Outlet />
             </div>
             <Footer />

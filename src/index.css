@@ -19,7 +19,7 @@
     @apply !text-white mt-[5px] !border-transparent !bg-gradient-to-r hover:!border-transparent !from-orange-400 !to-red-600 hover:!bg-gradient-to-bl hover:!text-white focus:!ring-4 focus:!outline-none focus:!ring-orange-300 !font-medium !rounded-lg !text-[14px]  sm:!text-[17px] !text-center !mr-2 !mb-2 !h-[35px] sm:!h-[40px] !w-full !tracking-widest
   }
   .btn-reset{
-    @apply text-white border-transparent bg-gradient-to-r hover:border-transparent from-blue-700 to-purple-700 hover:bg-gradient-to-bl hover:text-white focus:ring-1 focus:outline-none focus:ring-orange-200 font-medium rounded-md text-[13px]  sm:text-[16px] text-center tracking-widest px-[10px]
+    @apply text-white border-transparent bg-gradient-to-r hover:border-transparent from-blue-700 to-purple-700 hover:bg-gradient-to-bl hover:text-white focus:ring-1 focus:outline-none focus:ring-orange-200 font-medium rounded-md text-[13px]  sm:text-[16px] text-center px-[7px]
   }
   .btn-add{
     @apply !text-white my-[15px] !border-transparent !bg-gradient-to-r hover:!border-transparent !from-blue-700 !to-purple-700 hover:!bg-gradient-to-bl hover:!text-white !font-medium !rounded-lg !text-[11px]  sm:!text-[17px] !text-center !mr-2 !h-[30px] sm:!h-[40px] !w-full !tracking-widest 
@@ -35,20 +35,29 @@
     @apply block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700
   }
   .btn-menu{
-    @apply inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600
+    @apply inline-flex items-center p-1 w-7 h-7 sm:p-2 sm:w-10 sm:h-10 justify-center text-sm text-gray-500 rounded-md sm:rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600
   }
   .drop-down-header{
     @apply z-50 block my-4 text-base list-none bg-white rounded-lg 
   }
   .btn-darkMode{
-   @apply text-gray-500 border border-gray-300 md:ml-[12px] phone:mx-[12px] dark:border-gray-600 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none rounded-[50%] text-[14px] w-[40px] h-[40px]
+   @apply text-gray-500 border border-gray-300 md:ml-[12px] phone:mx-[12px] dark:border-gray-600 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none rounded-[50%] text-[14px] sm:w-[40px] sm:h-[40px] w-[30px] h-[30px]
   }
   /* Tabs */
   .tabs{
-    @apply inline-block px-[11px] py-[9px] rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white
+    @apply inline-block text-[12px] sm:text-[16px] p-2 sm:p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300
   }
   .tabs-active{
-    @apply inline-block px-[11px] py-[9px] text-white bg-blue-600 rounded-lg
+    @apply inline-block text-[12px] sm:text-[16px] p-2 sm:p-4 text-blue-600 border-b-2 border-blue-600 rounded-t-lg dark:text-blue-500 dark:border-blue-500
+  }
+  .tabs-LichChieu{
+    @apply inline-block text-[11px] md:text-[13px] xl:text-[16px] p-2 sm:p-4 border-b-2 lg:text-left lg:w-[500px] lg:border-r-2 lg:border-b-0 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300
+  }
+  .tabs-active-LichChieu{
+    @apply inline-block text-[11px] md:text-[13px] xl:text-[16px] p-2 sm:p-4 text-blue-600 border-b-2 lg:text-left lg:w-[500px] lg:border-r-2 lg:border-b-0 border-blue-600 dark:text-blue-500 dark:border-blue-500
+  }
+  .tabs-NgayChieu{
+    @apply inline-block px-4 py-3 text-white bg-blue-600 rounded-lg
   }
   /* Card */
   .a-Card{

@@ -6,13 +6,19 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import { Provider } from 'react-redux'
 import { store } from 'store'
+import { StyleProvider } from '@ant-design/cssinjs'
+import { ConfigProvider } from 'antd'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
     <ToastContainer />
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <ConfigProvider theme={{ token: { colorBgContainer: 'transparent' }, components: { Modal: { contentBg: '#111827' } } }}>
+      <StyleProvider hashPriority="high">
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </StyleProvider>
+    </ConfigProvider>
   </BrowserRouter>
 
 )

@@ -2,7 +2,7 @@ import { useAppDispatch, useAppSelector } from "store"
 import cn from 'classnames'
 import { PATH } from "constant"
 import { useNavigate } from "react-router-dom"
-import { quanLyNguoiDungActions } from "store/quanLyNguoiDung"
+import { ThongTinTaiKhoanThunk, quanLyNguoiDungActions } from "store/quanLyNguoiDung"
 import { useEffect } from "react"
 import { Popover } from "."
 import { Avatar } from "antd"
@@ -21,22 +21,22 @@ export const Header = () => {
         document.querySelector('#icon-dark-mode').classList.toggle('fa-moon')
     }
     useEffect(() => {
-        window
-    })
+        dispatch(ThongTinTaiKhoanThunk())
+    },[dispatch])
     return (
         <div className="shadow-lg dark:shadow-darkMode z-50 fixed w-full">
             <nav className="bg-white border-gray-200 dark:bg-gray-900">
                 <div className="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-4">
                     <a href={'/'} className="flex items-center">
-                        <img src="/images/logo.jpg" className="h-[45px] mr-3 rounded-[50%]" alt="Logo" />
-                        <span className="self-center text-2xl font-semibold whitespace-nowrap tracking-[2px] dark:text-white">CGV</span>
+                        <img src="/images/logo.jpg" className="h-[45px] mr-2 sm:mr-3 rounded-[50%]" alt="Logo" />
+                        <span className="self-center text-xl sm:text-2xl font-semibold whitespace-nowrap tracking-[2px] dark:text-white">CGI</span>
                     </a>
                     <div className="flex items-center md:order-2">
                         {
                             !accessToken && <div>
-                                <span className="mr-[10px] cursor-pointer font-[500] a-header-1 inline-block dark:text-white" onClick={() => { navigate(PATH.login) }}>Đăng nhập</span>
-                                <span className="a-header-1 inline-block dark:text-white">|</span>
-                                <span className="ml-[10px] cursor-pointer font-[500] a-header-1 inline-block dark:text-white" onClick={() => { navigate(PATH.register) }}>Đăng ký</span></div>
+                                <span className="mr-[10px] text-[12px] sm:text-[16px] cursor-pointer font-[500] a-header-1 inline-block dark:text-white" onClick={() => { navigate(PATH.login) }}>Đăng nhập</span>
+                                <span className="a-header-1 text-[12px] sm:text-[16px] inline-block dark:text-white">|</span>
+                                <span className="ml-[10px] text-[12px] sm:text-[16px] cursor-pointer font-[500] a-header-1 inline-block dark:text-white" onClick={() => { navigate(PATH.register) }}>Đăng ký</span></div>
                         }
                         {
                             !!accessToken && (
@@ -46,7 +46,7 @@ export const Header = () => {
                                         <div id="user-dropdown">
                                             <div className="px-4 py-3">
                                                 <span className="block text-[18px] text-gray-900 mb-[10px] font-[500]">{userLogin?.hoTen}</span>
-                                                <span className="block text-sm  text-gray-500 truncate font-[500]">{userLogin?.email}</span>
+                                                <span className="block text-sm  text-gray-500 truncate font-[500]">{userLogin?.email.substring(0,15)}...</span>
                                             </div>
                                             <ul className="py-2">
                                                 <li>
@@ -69,7 +69,7 @@ export const Header = () => {
                                     arrow={false}
                                 >
                                     <Avatar size="large" className="cursor-pointer">
-                                        <i className="fa-regular fa-user text-20 text-white"></i>
+                                        <i className="fa-regular fa-user text-[16px] text-white"></i>
                                     </Avatar>
                                 </Popover>
                             )
@@ -77,13 +77,13 @@ export const Header = () => {
                         <button id="theme-toggle" type="button" className="btn-darkMode flex items-center justify-center" onClick={() => {
                             darkMode()
                         }}>
-                            <i id="icon-dark-mode" className="fa-regular fa-sun text-[20px] leading-[0px]"></i>
+                            <i id="icon-dark-mode" className="fa-regular fa-sun sm:text-[20px] leading-[0px]"></i>
                         </button>
                         <button id="btn-menu" type="button" className="btn-menu" onClick={() => {
                             dropDown()
                         }}>
                             <span className="sr-only">Open main menu</span>
-                            <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                            <svg className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
                                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M1 1h15M1 7h15M1 13h15" />
                             </svg>
                         </button>
@@ -99,8 +99,8 @@ export const Header = () => {
                             </li>
                             <li>
                                 <p className="p-header" onClick={() => {
-                                    navigate(PATH.account)
-                                }}>Khóa học</p>
+                                    navigate(PATH.movieList)
+                                }}>Lịch chiếu</p>
                             </li>
                             <li>
                                 <p className="p-header">Tin tức</p>
