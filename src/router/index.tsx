@@ -1,6 +1,6 @@
 import { RouteObject } from "react-router-dom";
 import { AuthLayout } from 'components'
-import { Register, Login, Home, LichChieu } from "pages";
+import { Register, Login, Home, LichChieu, Booking } from "pages";
 import { PATH } from "constant/config";
 import { MainLayout } from "components";
 
@@ -16,7 +16,11 @@ export const router: RouteObject[] = [
             {
                 path: PATH.movieList,
                 element: <LichChieu />
-            }
+            },
+            {
+                path: PATH.booking,
+                element: <Booking />
+            },
         ]
     },
     {

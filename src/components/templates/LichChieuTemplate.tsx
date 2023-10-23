@@ -3,9 +3,12 @@ import cn from 'classnames'
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'store';
 import { LayThongTinLichChieuHeThongRapThunk } from 'store/quanLyRap';
+import { generatePath, useNavigate } from 'react-router-dom'
+import { PATH } from 'constant';
 
 export const LichChieuTemplate = () => {
     const dispatch = useAppDispatch()
+    const navigate = useNavigate()
     const [chonMaNhom, setChonMaNhom] = useState('GP09')
     const [chonMaHeThongRap, setChonMaHeThongRap] = useState('BHDStar')
     const [chonRap, setChonRap] = useState(1)
@@ -27,7 +30,7 @@ export const LichChieuTemplate = () => {
     const listDanhSach = listCumRap?.lstCumRap.find(a => a.maCumRap === chonMaCumRap)
     const listLichChieu = listDanhSach?.danhSachPhim?.find(a => a.maPhim === chonMaPhim)
     return (
-        <div className='max-w-screen-2xl m-auto p-[20px] sm:py-[20px] sm:px-[40px]'>
+        <div className='max-w-screen-2xl m-auto p-[30px] sm:py-[20px] sm:px-[40px]'>
             <div className='flex justify-between gap-[10px] sm:gap-[30px]'>
                 <form className='my-[15px] w-full'>
                     <label htmlFor="setMaNhom" className={cn("label", { "text-black": 'bg-white' })}>Mã nhóm</label>
@@ -68,8 +71,8 @@ export const LichChieuTemplate = () => {
                 </ul>
             </div>
             <div className='flex flex-col lg:flex-row'>
-                <div className='h-[200px] md:h-[260px] lg:h-[800px] overflow-auto'>
-                    <ul className="grid grid-cols-2 gap-[10px] font-medium text-center text-gray-500 p-2 sm:py-4 sm:grid-cols-3 sm:gap-[10px] lg:flex lg:flex-col md:gap-[30px] dark:text-gray-100">
+                <div className='h-[200px] md:h-[260px] lg:h-[650px] overflow-auto'>
+                    <ul className="grid grid-cols-2 gap-[10px] font-medium text-center text-gray-500 p-2 sm:py-4 sm:grid-cols-3 sm:gap-[20px] lg:flex lg:flex-col dark:text-gray-100">
                         {
                             listCumRap?.lstCumRap.map((a, index) => (
                                 <li key={index} className="flex flex-row items-center" onClick={() => { setChonRap(index + 1), setChonMaCumRap(a.maCumRap) }}>
@@ -83,7 +86,7 @@ export const LichChieuTemplate = () => {
                         }
                     </ul>
                 </div>
-                <div className="relative w-full overflow-x-auto shadow-md rounded-md sm:rounded-lg mt-[15px] lg:ml-3 h-[400px] lg:h-[800px] overflow-auto">
+                <div className="relative w-full overflow-x-auto shadow-md rounded-md sm:rounded-lg mt-[15px] lg:ml-3 h-[400px] lg:h-[650px] overflow-auto">
                     <table className="w-full text-sm text-left text-gray-500 dark:text-gray-100">
                         <thead className="text-xs sm:text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-100">
                             <tr>
@@ -131,7 +134,10 @@ export const LichChieuTemplate = () => {
                     <div className='flex flex-wrap gap-[10px]'>
                         {
                             listLichChieu?.lstLichChieuTheoPhim?.map((b, index) => (
-                                <button key={index} className='border h-fit text-[12px] sm:text-[16px] px-1 py-1 rounded-md cursor-pointer text-white hover:!text-cyan-400 hover:border-cyan-400 focus:!text-white focus:!bg-cyan-400'>{("0" + new Date(b.ngayChieuGioChieu).getHours()).slice(-2)} : {("0" + new Date(b.ngayChieuGioChieu).getMinutes()).slice(-2)}</button>
+                                <button key={index} onClick={() => {
+                                    const path = generatePath(PATH.booking, {bookingID: b.maLichChieu})
+                                    navigate(path)
+                                }} className='border h-fit text-[12px] sm:text-[16px] px-1 py-1 rounded-md cursor-pointer text-white hover:!text-cyan-400 hover:border-cyan-400 focus:!text-white focus:!bg-cyan-400'>{("0" + new Date(b.ngayChieuGioChieu).getHours()).slice(-2)} : {("0" + new Date(b.ngayChieuGioChieu).getMinutes()).slice(-2)}</button>
                             ))
                         }
                     </div>

@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { QuanLyRapServices } from "services/QuanLyRapService";
+import { QuanLyRapServices } from "services";
 
 export const LayThongTinLichChieuHeThongRapThunk = createAsyncThunk(
     "LayThongTinLichChieuHeThongRap",

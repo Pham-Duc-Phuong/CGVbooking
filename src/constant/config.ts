@@ -4,4 +4,5 @@ export const PATH = {
     account: '/account',
     admin: '/admin',
     movieList: '/movieList',
+    booking: '/booking/:bookingID',
 }
