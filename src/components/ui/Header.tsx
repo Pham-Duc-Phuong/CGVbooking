@@ -103,7 +103,7 @@ export const Header = () => {
                                 }}>Lịch chiếu</p>
                             </li>
                             <li>
-                                <p className="p-header">Tin tức</p>
+                                <p className="p-header">Khuyến mãi</p>
                             </li>
                             <li>
                                 <p className="p-header">Liên hệ</p>

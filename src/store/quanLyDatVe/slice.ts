@@ -8,7 +8,7 @@ type QuanLyDatVeInitialSlice = {
 }
 
 const initialState: QuanLyDatVeInitialSlice = {
-    bookingChair:[]
+    bookingChair: []
 }
 
 const QuanLyDatVeSlice = createSlice({
@@ -16,7 +16,23 @@ const QuanLyDatVeSlice = createSlice({
     initialState,
     reducers: {
         booking: (state, { payload }) => {
-            state.bookingChair.push(payload)
+            const index = state.bookingChair?.findIndex(a => a.tenGhe === payload.tenGhe)
+            if (state.bookingChair.length < 8) {
+                if (index !== -1) {
+                    state.bookingChair.splice(index, 1)
+                } else {
+                    state.bookingChair.push(payload)
+                }
+            } else {
+                if (index === -1) {
+                    alert('Khách hàng chỉ được đặt tối đa 8 chỗ ngồi')
+                } else {
+                    state.bookingChair.splice(index, 1)
+                }
+            }
+        },
+        booked: (state) => {
+            state.bookingChair = []
         }
     },
     extraReducers(builder) {

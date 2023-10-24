@@ -22,3 +22,10 @@ export type LayDanhSachPhongVe = {
     thongTinPhim: thongTinPhim
     danhSachGhe: danhSachGhe[]
 }
+export type DatVe = {
+    maLichChieu: number
+    danhSachVe: {
+        maGhe: number
+        giaVe: number
+    }[]
+}
