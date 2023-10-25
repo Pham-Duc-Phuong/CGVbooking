@@ -56,8 +56,11 @@
   .tabs-active-LichChieu{
     @apply inline-block text-[11px] md:text-[13px] xl:text-[16px] p-2 sm:p-4 text-blue-600 border-b-2 lg:text-left lg:w-[500px] lg:border-r-2 lg:border-b-0 border-blue-600 dark:text-blue-500 dark:border-blue-500
   }
-  .tabs-NgayChieu{
+  .tabs-info-active{
     @apply inline-block px-4 py-3 text-white bg-blue-600 rounded-lg
+  }
+  .tabs-info{
+    @apply inline-block px-4 py-3 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white
   }
   /* Card */
   .a-Card{

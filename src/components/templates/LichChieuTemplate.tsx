@@ -96,7 +96,7 @@ export const LichChieuTemplate = () => {
                                 <th scope="col" className="px-4 py-3">
                                     Phim
                                 </th>
-                                <th scope="col" className="px-6 sm:px-10 py-3 w-[120px] sm:w-[200px]">
+                                <th scope="col" className="px-5 sm:px-8 py-3 w-[140px] sm:w-[200px]">
                                     <i className="fa-solid fa-ticket mr-3"></i>Mua vé
                                 </th>
                             </tr>
@@ -104,7 +104,7 @@ export const LichChieuTemplate = () => {
                         <tbody>
                             {
                                 listDanhSach?.danhSachPhim?.map((a, index) => (
-                                    <tr key={index} className="bg-white dark:bg-gray-800">
+                                    <tr key={index} className="bg-white dark:bg-gray-800 border-b">
                                         <th scope="row" className="py-2 font-medium  whitespace-nowrap ">
                                             <img className='w-full sm:w-[100px]' src={a.hinhAnh} alt="" />
                                         </th>
@@ -134,10 +134,10 @@ export const LichChieuTemplate = () => {
                     <div className='flex flex-wrap gap-[10px]'>
                         {
                             listLichChieu?.lstLichChieuTheoPhim?.map((b, index) => (
-                                <button key={index} onClick={() => {
+                                <a href='#' key={index} onClick={() => {
                                     const path = generatePath(PATH.booking, {bookingID: b.maLichChieu})
                                     navigate(path)
-                                }} className='border h-fit text-[12px] sm:text-[16px] px-1 py-1 rounded-md cursor-pointer text-white hover:!text-cyan-400 hover:border-cyan-400 focus:!text-white focus:!bg-cyan-400'>{("0" + new Date(b.ngayChieuGioChieu).getHours()).slice(-2)} : {("0" + new Date(b.ngayChieuGioChieu).getMinutes()).slice(-2)}</button>
+                                }} className='border h-fit text-[12px] sm:text-[16px] px-1 py-1 rounded-md cursor-pointer !text-white dark:text-white hover:!text-cyan-400 hover:border-cyan-400 focus:!text-white focus:!bg-cyan-400'>{("0" + new Date(b.ngayChieuGioChieu).getHours()).slice(-2)} : {("0" + new Date(b.ngayChieuGioChieu).getMinutes()).slice(-2)}</a>
                             ))
                         }
                     </div>

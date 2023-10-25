@@ -134,7 +134,7 @@ export const BookingTemplate = () => {
                                         } else {
                                             showModal()
                                         }
-                                    }}><i className="fa-solid fa-money-check-dollar mr-1"></i><span>Thanh toán</span></p>
+                                    }}><i className="fa-solid fa-cart-shopping mr-1"></i><span>Thanh toán</span></p>
                                 </div>
                             </div>
                         </div>
@@ -231,7 +231,7 @@ export const BookingTemplate = () => {
                             </svg>
                             Why do I need to connect with my wallet?</p>
                     </div>
-                    <p className={cn('input', { 'hidden': !khuyenMai })}>{"Tổng tiền:" + " " + bookingChair.reduce((total, a) => total = (total + a.giaVe) * khuyenMai, 0)}</p>
+                    <p className={cn('input', { 'hidden': !khuyenMai })}>{"Tổng tiền:" + " " + bookingChair.reduce((total, a) => total = Math.floor((total + a.giaVe) * khuyenMai), 0)}</p>
                     <div className="flex p-2 sm:p-4">
                         <button className="btn-register !m-0 !mx-4" onClick={() => {
                             if (!khuyenMai) {

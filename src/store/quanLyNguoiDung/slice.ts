@@ -2,11 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 import { UserByAccessToken, userLogin } from "types";
 import { getAccessToken } from "utils";
 import { ThongTinTaiKhoanThunk, loginThunk } from ".";
+import { AccountSchemaType } from "schema";
 
 type quanLyNguoiDungInitialState = {
-    userLogin?: userLogin | UserByAccessToken
+    userLogin?: userLogin | AccountSchemaType | UserByAccessToken
     isFetchLoading?: boolean
     accessToken?: string
+    updateUser?: AccountSchemaType
+    infoUser?: UserByAccessToken
 }
 
 const initialState: quanLyNguoiDungInitialState = {
@@ -36,8 +39,10 @@ export const quanLyNguoiDungSlice = createSlice({
             .addCase(loginThunk.rejected, (state) => {
                 state.isFetchLoading = false
             })
-            .addCase(ThongTinTaiKhoanThunk.fulfilled, (state, {payload}) => {
+            .addCase(ThongTinTaiKhoanThunk.fulfilled, (state, { payload }) => {
                 state.userLogin = payload
+                state.updateUser = { ...payload, soDt: payload.soDT }
+                state.infoUser = payload
             })
     },
 })
