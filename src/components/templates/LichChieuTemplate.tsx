@@ -120,7 +120,7 @@ export const LichChieuTemplate = () => {
                                                 showModal()
                                                 setChonMaPhim(a.maPhim)
                                                 setMaPhimLayThongTinLichChieuPhim(a.maPhim)
-                                            }}><img className='w-[30px] sm:w-[40px] mr-1' src='/src/assets/tickets-ticket-svgrepo-com.svg'></img>Mua vé</button>
+                                            }}><img className='w-[30px] sm:w-[40px] mr-1' src='/assets/tickets-ticket-svgrepo-com.svg'></img>Mua vé</button>
                                         </td>
                                     </tr>
                                 ))
