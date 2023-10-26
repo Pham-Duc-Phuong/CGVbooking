@@ -24,7 +24,7 @@ export const AdminNguoiDung = () => {
     useEffect(() => {
         reset({ ...timKiemNguoiDung, maNhom: chonMaNhom, soDt: timKiemNguoiDung?.soDT })
         dispatch(TimKiemNguoiDungThunk(chonMaNhom))
-    }, [reset, timKiemNguoiDung, dispatch, chonMaNhom, danhSachNguoiDung])
+    }, [reset, timKiemNguoiDung, dispatch, chonMaNhom])
     const [isModalOpen, setIsModalOpen] = useState(false);
     const showModal = () => {
         setIsModalOpen(true);

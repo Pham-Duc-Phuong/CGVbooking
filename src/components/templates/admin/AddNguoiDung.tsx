@@ -7,7 +7,7 @@ import { toast } from 'react-toastify'
 import { AccountSchema, AccountSchemaType } from 'schema'
 import { quanLyNguoiDungServices } from 'services'
 import { useAppDispatch } from 'store'
-import { ThongTinTaiKhoanThunk } from 'store/quanLyNguoiDung'
+import { TimKiemNguoiDungThunk } from 'store/quanLyNguoiDung'
 export const AddNguoiDung = () => {
     const dispatch = useAppDispatch()
     const { handleSubmit, register, formState: { errors } } = useForm<AccountSchemaType>({
@@ -17,7 +17,7 @@ export const AddNguoiDung = () => {
     const setSubmit: SubmitHandler<AccountSchemaType> = async (values) => {
         try {
             await quanLyNguoiDungServices.ThemNguoiDung(values)
-            dispatch(ThongTinTaiKhoanThunk())
+            dispatch(TimKiemNguoiDungThunk('GP13'))
             toast.success('Thêm tài khoản thành công')
         } catch (error) {
             toast.error(error.response.data.content)
