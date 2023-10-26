@@ -1,3 +1,4 @@
+// LayThongTinLichChieuPhimTheoHeThongRap
 export type ThongTinLichChieuHeThongRap<A> = {
     maHeThongRap: string
     tenHeThongRap: string
@@ -28,3 +29,33 @@ export type LichChieuTheoPhim = {
     ngayChieuGioChieu: string
     giaVe: number
 }
+// LayThongTinLichChieuPhim
+export type LayThongTinLichChieuPhim<A> = {
+    maPhim: number
+    tenPhim: string
+    biDanh: string
+    trailer: string
+    hinhAnh: string
+    moTa: string
+    maNhom: string
+    hot: boolean
+    dangChieu: boolean
+    sapChieu: boolean
+    ngayKhoiChieu: string
+    danhGia: number
+    heThongRapChieu: A
+}
+export type heThongRapChieu<A> = {
+    maHeThongRap: string
+    tenHeThongRap: string
+    logo: string
+    cumRapChieu: A
+}
+export type cumRapChieu<A> = {
+    maCumRap: string
+    tenCumRap: string
+    hinhAnh: string
+    diaChi: string
+    lichChieuPhim: A
+}
+export type lichChieuPhim = Omit<LichChieuTheoPhim, 'maLichChieu'> & { thoiLuong: number, maLichChieu: string }

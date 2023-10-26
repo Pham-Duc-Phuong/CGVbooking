@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { UserByAccessToken, userLogin } from "types";
+import { TimKiemNguoiDung, UserByAccessToken, userLogin } from "types";
 import { getAccessToken } from "utils";
-import { ThongTinTaiKhoanThunk, loginThunk } from ".";
+import { ThongTinTaiKhoanThunk, TimKiemNguoiDungThunk, loginThunk } from ".";
 import { AccountSchemaType } from "schema";
 
 type quanLyNguoiDungInitialState = {
@@ -10,6 +10,8 @@ type quanLyNguoiDungInitialState = {
     accessToken?: string
     updateUser?: AccountSchemaType
     infoUser?: UserByAccessToken
+    danhSachNguoiDung?: TimKiemNguoiDung[]
+    timKiemNguoiDung?: TimKiemNguoiDung
 }
 
 const initialState: quanLyNguoiDungInitialState = {
@@ -24,7 +26,11 @@ export const quanLyNguoiDungSlice = createSlice({
             localStorage.removeItem('accessToken')
             state.accessToken = undefined
             state.userLogin = undefined
+        },
+        timKiemUser: (state, {payload}) => {
+            state.timKiemNguoiDung = payload
         }
+
     },
     extraReducers(builder) {
         builder
@@ -43,6 +49,9 @@ export const quanLyNguoiDungSlice = createSlice({
                 state.userLogin = payload
                 state.updateUser = { ...payload, soDt: payload.soDT }
                 state.infoUser = payload
+            })
+            .addCase(TimKiemNguoiDungThunk.fulfilled, (state, { payload }) => {
+                state.danhSachNguoiDung = payload
             })
     },
 })

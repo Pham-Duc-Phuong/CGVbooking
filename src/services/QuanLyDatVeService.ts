@@ -1,5 +1,5 @@
 import { apiInstance } from "constant"
-import { DatVe, LayDanhSachPhongVe } from "types"
+import { DatVe, LayDanhSachPhongVe, TaoLichChieu } from "types"
 
 const api = apiInstance({
     baseURL: import.meta.env.VITE_QUAN_LY_DAT_VE_API
@@ -7,5 +7,6 @@ const api = apiInstance({
 
 export const QuanLyDatVeServices = {
     LayDanhSachPhongVe: (query: string) => api.get<ApiResponse<LayDanhSachPhongVe>>(`/LayDanhSachPhongVe?MaLichChieu=${query}`),
-    DatVe: (data: DatVe) => api.post('/DatVe', data)
+    DatVe: (data: DatVe) => api.post('/DatVe', data),
+    TaoLichChieu: (data: TaoLichChieu) => api.post('/TaoLichChieu', data)
 }

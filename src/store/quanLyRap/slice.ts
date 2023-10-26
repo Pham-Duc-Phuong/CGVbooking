@@ -1,13 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { CumRap, LichChieuTheoPhim, ThongTinLichChieuHeThongRap, danhSachPhimChieu } from "types";
-import { LayThongTinLichChieuHeThongRapThunk } from ".";
+import { CumRap, LayThongTinLichChieuPhim, LichChieuTheoPhim, ThongTinLichChieuHeThongRap, cumRapChieu, danhSachPhimChieu, heThongRapChieu, lichChieuPhim } from "types";
+import { LayThongTinLichChieuHeThongRapThunk, LayThongTinLichChieuPhimThunk } from ".";
 
 type QuanLyRapInitialState = {
     ThongTinLichChieuHeThongRap?: ThongTinLichChieuHeThongRap<CumRap<danhSachPhimChieu<LichChieuTheoPhim[]>[]>[]>[]
+    LayThongTinLichChieuPhim?: LayThongTinLichChieuPhim<heThongRapChieu<cumRapChieu<lichChieuPhim[]>[]>[]>
+
 }
 
 const initialState: QuanLyRapInitialState = {
-
+   
 }
 
 const QuanLyRapSlice = createSlice({
@@ -20,6 +22,9 @@ const QuanLyRapSlice = createSlice({
         builder
             .addCase(LayThongTinLichChieuHeThongRapThunk.fulfilled, (state, { payload }) => {
                 state.ThongTinLichChieuHeThongRap = payload
+            })
+            .addCase(LayThongTinLichChieuPhimThunk.fulfilled, (state, { payload }) => {
+                state.LayThongTinLichChieuPhim = payload
             })
     },
 })

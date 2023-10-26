@@ -8,6 +8,7 @@ import { DatVe } from "types"
 import { QuanLyDatVeServices } from "services"
 import { toast } from "react-toastify"
 import { Modal } from "antd"
+import { xIconSVG } from "constant"
 
 export const BookingTemplate = () => {
     const dispatch = useAppDispatch()
@@ -143,9 +144,7 @@ export const BookingTemplate = () => {
             </div>
             <Modal footer={false} closeIcon={false} open={payBankType} onCancel={handleCancelPayBankType}>
                 <button type="button" className="absolute top-[25px] right-[30px] btn-reset p-2 sm:p-3" onClick={() => { handleCancelPayBankType() }}>
-                    <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                    </svg>
+                    {xIconSVG()}
                     <span className="sr-only">Close modal</span>
                 </button>
                 <img src="/images/TCB-QR-PHAM DUC PHUONG-2023924214542.jpg" alt="" />
@@ -172,9 +171,7 @@ export const BookingTemplate = () => {
             </Modal>
             <Modal footer={false} closeIcon={false} open={isModalOpen} onCancel={handleCancel}>
                 <button type="button" className="absolute top-3 right-2.5 btn-reset p-2 sm:p-3 from-orange-400 to-red-600" onClick={() => { handleCancel() }}>
-                    <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                    </svg>
+                    {xIconSVG()}
                     <span className="sr-only">Close modal</span>
                 </button>
                 {/* Modal header */}

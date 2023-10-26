@@ -29,3 +29,9 @@ export type DatVe = {
         giaVe: number
     }[]
 }
+export type TaoLichChieu = {
+    maPhim: number
+    ngayChieuGioChieu: string
+    maRap: string
+    giaVe: number
+}

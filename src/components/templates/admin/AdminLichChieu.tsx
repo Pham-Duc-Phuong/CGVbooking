@@ -1,20 +1,33 @@
-import { Modal } from 'antd';
+
+import { Button, Modal } from 'antd';
 import cn from 'classnames'
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'store';
 import { LayThongTinLichChieuHeThongRapThunk, LayThongTinLichChieuPhimThunk } from 'store/quanLyRap';
 import { generatePath, useNavigate } from 'react-router-dom'
-import { PATH } from 'constant';
+import { PATH, xIconSVG } from 'constant';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { TaoLichChieu } from 'types';
+import { TaoLichChieuSchema, TaoLichChieuSchemaType } from 'schema/TaoLichChieuSchema';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Input } from 'components';
+import { QuanLyDatVeServices } from 'services';
+import { toast } from 'react-toastify';
+import { getToday } from 'utils';
 
-export const LichChieuTemplate = () => {
+export const AdminLichChieu = () => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
+    const { handleSubmit, register, reset, formState: { errors } } = useForm<TaoLichChieuSchemaType>({
+        mode: 'onChange',
+        resolver: zodResolver(TaoLichChieuSchema)
+    })
     const [chonMaNhom, setChonMaNhom] = useState('GP09')
     const [chonMaHeThongRap, setChonMaHeThongRap] = useState('BHDStar')
     const [chonRap, setChonRap] = useState(1)
     const [chonMaCumRap, setChonMaCumRap] = useState('bhd-star-cineplex-pham-hung')
-    const [maPhimlayThongTinLichChieuPhim, setMaPhimLayThongTinLichChieuPhim] = useState<number>(1337)
     const [chonMaPhim, setChonMaPhim] = useState<number>()
+    const [maPhimlayThongTinLichChieuPhim, setMaPhimLayThongTinLichChieuPhim] = useState<number>(1337)
     const [isModalOpen, setIsModalOpen] = useState(false);
     const showModal = () => {
         setIsModalOpen(true);
@@ -22,7 +35,13 @@ export const LichChieuTemplate = () => {
     const handleCancel = () => {
         setIsModalOpen(false);
     };
-
+    const [taoLichChieu, setTaoLichChieu] = useState(false);
+    const showTaoLichChieu = () => {
+        setTaoLichChieu(true);
+    };
+    const handleCancelTaoLichChieu = () => {
+        setTaoLichChieu(false);
+    };
     useEffect(() => {
         dispatch(LayThongTinLichChieuHeThongRapThunk(chonMaNhom))
         dispatch(LayThongTinLichChieuPhimThunk(maPhimlayThongTinLichChieuPhim))
@@ -33,8 +52,22 @@ export const LichChieuTemplate = () => {
     const listLichChieu = listDanhSach?.danhSachPhim?.find(a => a.maPhim === chonMaPhim)
     const LayThongTinLichChieuPhimTheoMaHeThongChieu = LayThongTinLichChieuPhim?.heThongRapChieu?.find(a => a.maHeThongRap === chonMaHeThongRap)
     const LayThongTinLichChieuPhimTheoMaCumRap = LayThongTinLichChieuPhimTheoMaHeThongChieu?.cumRapChieu?.find(a => a.maCumRap === chonMaCumRap)
+    useEffect(() => {
+        reset({ ...listLichChieu, maPhim: String(listLichChieu?.maPhim), maRap: listDanhSach?.maCumRap })
+    }, [listLichChieu, reset, listDanhSach])
+    const setSubmit: SubmitHandler<TaoLichChieu> = async (values) => {
+        const valuesLichChieu = { ...values, maPhim: Number(values.maPhim), giaVe: Number(values.giaVe) }
+        console.log('valuesLichChieu', valuesLichChieu)
+        try {
+            await QuanLyDatVeServices.TaoLichChieu(valuesLichChieu)
+            dispatch(LayThongTinLichChieuHeThongRapThunk(chonMaNhom))
+            toast.success('Tạo lịch chiếu thành công')
+        } catch (error) {
+            toast.error(error.response.data.content)
+        }
+    }
     return (
-        <div className='max-w-screen-2xl m-auto p-[30px] sm:py-[20px] sm:px-[40px]'>
+        <div className='max-w-screen-2xl m-auto'>
             <div className='flex justify-between gap-[10px] sm:gap-[30px]'>
                 <form className='my-[15px] w-full'>
                     <label htmlFor="setMaNhom" className={cn("label", { "text-black": 'bg-white' })}>Mã nhóm</label>
@@ -92,16 +125,15 @@ export const LichChieuTemplate = () => {
                 </div>
                 <div className="relative w-full overflow-x-auto shadow-md rounded-md sm:rounded-lg mt-[15px] lg:ml-3 h-[400px] lg:h-[650px] overflow-auto">
                     <table className="w-full text-sm text-left text-gray-500 dark:text-gray-100">
-                        <thead className="text-xs sm:text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-100">
+                        <thead className="text-[11px] sm:text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-100">
                             <tr>
-                                <th scope="col" className="px-4 py-3 w-[70px] sm:w-[100px]">
+                                <th scope="col" className="px-1 py-3 w-[60px] sm:w-[100px]">
 
                                 </th>
-                                <th scope="col" className="px-4 py-3">
+                                <th scope="col" className="px-2 py-3">
                                     Phim
                                 </th>
-                                <th scope="col" className="px-5 sm:px-8 py-3 w-[140px] sm:w-[200px]">
-
+                                <th scope="col" className="px-1 py-3">
                                 </th>
                             </tr>
                         </thead>
@@ -112,15 +144,19 @@ export const LichChieuTemplate = () => {
                                         <th scope="row" className="py-2 font-medium  whitespace-nowrap ">
                                             <img className='w-full sm:w-[100px]' src={a.hinhAnh} alt="" />
                                         </th>
-                                        <th className="px-4 py-2 text-[13px] sm:text-[18px] text-gray-900 dark:text-white">
+                                        <th className="px-2 py-2 text-[13px] sm:text-[18px] text-gray-900 dark:text-white">
                                             {a.tenPhim}
                                         </th>
-                                        <td className="px-3 py-2">
-                                            <button className='btn-reset flex items-center px-[10px] sm:px-[20px] xl:px-[30px] py-[5px] sm:py-[10px] xl:py-[10px] sm:w-auto' onClick={() => {
+                                        <td className="px-1 py-2">
+                                            <button className='btn-reset flex items-center justify-center !w-[120px] sm:!w-[200px] text-[11px] sm:text-[16px] py-[5px] sm:py-[10px] xl:py-[10px]' onClick={() => {
+                                                showTaoLichChieu()
+                                                setChonMaPhim(a.maPhim)
+                                            }}><i className="fa-regular fa-calendar-plus mr-3"></i>Tạo lịch chiếu</button>
+                                            <button className='btn-reset from-orange-400 to-red-600 flex items-center justify-center !w-[120px] sm:!w-[200px] text-[11px] sm:text-[16px] py-[5px] sm:py-[10px] xl:py-[10px] mt-[6px] sm:mt-2 ' onClick={() => {
                                                 showModal()
                                                 setChonMaPhim(a.maPhim)
                                                 setMaPhimLayThongTinLichChieuPhim(a.maPhim)
-                                            }}><i className="fa-solid fa-ticket mr-3"></i>Mua vé</button>
+                                            }}><i className="fa-regular fa-calendar-days mr-3"></i>Xem lịch chiếu</button>
                                         </td>
                                     </tr>
                                 ))
@@ -142,7 +178,7 @@ export const LichChieuTemplate = () => {
                                 <a href='#' key={index} onClick={() => {
                                     const path = generatePath(PATH.booking, { bookingID: b.maLichChieu })
                                     navigate(path)
-                                }} className='border h-fit text-[11px] sm:text-[16px] px-1 py-1 rounded-md cursor-pointer !text-white dark:text-white hover:!text-cyan-400 hover:border-cyan-400 focus:!text-white focus:!bg-cyan-400'>{("0" + new Date(b.ngayChieuGioChieu).getHours()).slice(-2)}:{("0" + new Date(b.ngayChieuGioChieu).getMinutes()).slice(-2)}</a>
+                                }} className='border h-fit text-[12px] sm:text-[16px] px-1 py-1 rounded-md cursor-pointer !text-white dark:text-white hover:!text-cyan-400 hover:border-cyan-400 focus:!text-white focus:!bg-cyan-400'>{("0" + new Date(b.ngayChieuGioChieu).getHours()).slice(-2)} : {("0" + new Date(b.ngayChieuGioChieu).getMinutes()).slice(-2)}</a>
                             ))
                         }
                         {
@@ -150,12 +186,29 @@ export const LichChieuTemplate = () => {
                                 <a href='#' key={index} onClick={() => {
                                     const path = generatePath(PATH.booking, { bookingID: b.maLichChieu })
                                     navigate(path)
-                                }} className='border h-fit text-[11px] sm:text-[16px] px-1 py-1 rounded-md cursor-pointer !text-white dark:text-white hover:!text-cyan-400 hover:border-cyan-400 focus:!text-white focus:!bg-cyan-400'>{("0" + new Date(b.ngayChieuGioChieu).getHours()).slice(-2)}:{("0" + new Date(b.ngayChieuGioChieu).getMinutes()).slice(-2)}</a>
+                                }} className='border h-fit text-[12px] sm:text-[16px] px-1 py-1 rounded-md cursor-pointer !text-white dark:text-white hover:!text-cyan-400 hover:border-cyan-400 focus:!text-white focus:!bg-cyan-400'>{("0" + new Date(b.ngayChieuGioChieu).getHours()).slice(-2)} : {("0" + new Date(b.ngayChieuGioChieu).getMinutes()).slice(-2)}</a>
                             ))
                         }
                     </div>
+                </Modal>
+                <Modal footer={false} open={taoLichChieu} onCancel={handleCancelTaoLichChieu} closeIcon={false}>
+                    <form action="" onSubmit={handleSubmit(setSubmit)}>
+                        <div className='flex justify-between border-b pb-2 mb-2'>
+                            <h1 className='text-[20px] font-medium dark:text-white'><i className="fa-regular fa-calendar-plus mr-3"></i>Tạo lịch chiếu</h1>
+                            <button type="button" className="absolute top-3 right-2.5 btn-reset p-2 sm:p-3 from-orange-400 to-red-600" onClick={() => { handleCancelTaoLichChieu() }}>
+                                {xIconSVG()}
+                                <span className="sr-only">Close modal</span>
+                            </button>
+                        </div>
+                        <Input colorLabel="black" className="input" label="Mã phim" placeholder="Mã phim" id="maPhim" error={errors?.maPhim?.message} register={register} />
+                        <Input defaultValue={getToday} colorLabel="black" className="input" label="Lịch chiếu (DD/MM/YYYY hh/mm/ss)" placeholder="Lịch chiếu (DD/MM/YYYY hh/mm/ss)" id="ngayChieuGioChieu" error={errors?.ngayChieuGioChieu?.message} register={register} />
+                        <Input colorLabel="black" className="input" label="Mã cụm rạp" placeholder="Mã cụm rạp" id="maRap" error={errors?.maRap?.message} register={register} />
+                        <Input colorLabel="black" className="input" label="Giá vé" placeholder="Giá vé" id="giaVe" error={errors?.giaVe?.message} register={register} />
+                        <Button htmlType='submit' className='btn-register'>Tạo lịch chiếu</Button>
+                    </form>
                 </Modal>
             </div>
         </div>
     )
 }
+

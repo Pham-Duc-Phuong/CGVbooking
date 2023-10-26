@@ -60,7 +60,7 @@ export const Header = () => {
                                                     }}>Quản lý</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#" className="a-header font-[500]" onClick={() => { dispatch(quanLyNguoiDungActions.logOut()), navigate(PATH.login) }}>Đăng xuất</a>
+                                                    <a href="#" className="a-header font-[500]" onClick={() => { dispatch(quanLyNguoiDungActions.logOut())}}>Đăng xuất</a>
                                                 </li>
                                             </ul>
                                         </div>

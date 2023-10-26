@@ -12,3 +12,14 @@ export const LayThongTinLichChieuHeThongRapThunk = createAsyncThunk(
         }
     }
 )
+export const LayThongTinLichChieuPhimThunk = createAsyncThunk(
+    "LayThongTinLichChieuPhim",
+    async (payload: number, {rejectWithValue}) => {
+        try {
+            const data = await QuanLyRapServices.LayThongTinLichChieuPhim(payload)
+            return data.data.content
+        } catch (error) {
+            return rejectWithValue(error)
+        }
+    }
+)

@@ -24,7 +24,6 @@ export const AccountInfo = () => {
             dispatch(ThongTinTaiKhoanThunk())
             toast.success('Cập nhật thành công')
         } catch (error) {
-            console.log('error', error)
             toast.error(error.response.data.content)
         }
     }

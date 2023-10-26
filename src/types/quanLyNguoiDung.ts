@@ -41,3 +41,6 @@ export type UserUpdate = {
     maNhom: string
     maLoaiNguoiDung: string
 }
+export type TimKiemNguoiDung = Omit<UserUpdate, 'maNhom' | 'soDt'> & {
+    soDT: string
+}
