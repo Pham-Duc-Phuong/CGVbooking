@@ -29,6 +29,10 @@ export const router: RouteObject[] = [
                 path: PATH.admin,
                 element: <Admin />
             },
+            {
+                path: PATH.detailMovie,
+                element: <Admin />
+            },
         ]
     },
     {

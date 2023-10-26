@@ -144,9 +144,9 @@ export const AdminLichChieu = () => {
                                         <th scope="row" className="py-2 font-medium  whitespace-nowrap ">
                                             <img className='w-full sm:w-[100px]' src={a.hinhAnh} alt="" />
                                         </th>
-                                        <th className="px-2 py-2 text-[13px] sm:text-[18px] text-gray-900 dark:text-white">
+                                        <td className="px-2 py-2 text-[13px] sm:text-[18px] font-[400px] sm:font-medium text-gray-900 dark:text-white">
                                             {a.tenPhim}
-                                        </th>
+                                        </td>
                                         <td className="px-1 py-2">
                                             <button className='btn-reset flex items-center justify-center !w-[120px] sm:!w-[200px] text-[11px] sm:text-[16px] py-[5px] sm:py-[10px] xl:py-[10px]' onClick={() => {
                                                 showTaoLichChieu()
@@ -170,7 +170,7 @@ export const AdminLichChieu = () => {
                             <img className='w-[60px]' src={listLichChieu?.hinhAnh} alt="" />
                             <p className='text-[20px] font-[500] mx-2 text-white'>{listLichChieu?.tenPhim}</p>
                         </div>
-                        <button className='btn-reset h-fit !from-orange-400 !to-red-600 sm:px-[9px]' onClick={() => { handleCancel() }}>X</button>
+                        <button className='btn-reset h-fit !from-orange-400 !to-red-600 p-2' onClick={() => { handleCancel() }}>{xIconSVG()}</button>
                     </div>
                     <div className='flex flex-wrap gap-[10px]'>
                         {
@@ -194,16 +194,16 @@ export const AdminLichChieu = () => {
                 <Modal footer={false} open={taoLichChieu} onCancel={handleCancelTaoLichChieu} closeIcon={false}>
                     <form action="" onSubmit={handleSubmit(setSubmit)}>
                         <div className='flex justify-between border-b pb-2 mb-2'>
-                            <h1 className='text-[20px] font-medium dark:text-white'><i className="fa-regular fa-calendar-plus mr-3"></i>Tạo lịch chiếu</h1>
+                            <h1 className='text-[20px] font-medium text-white'><i className="fa-regular fa-calendar-plus mr-3"></i>Tạo lịch chiếu</h1>
                             <button type="button" className="absolute top-3 right-2.5 btn-reset p-2 sm:p-3 from-orange-400 to-red-600" onClick={() => { handleCancelTaoLichChieu() }}>
                                 {xIconSVG()}
                                 <span className="sr-only">Close modal</span>
                             </button>
                         </div>
-                        <Input colorLabel="black" className="input" label="Mã phim" placeholder="Mã phim" id="maPhim" error={errors?.maPhim?.message} register={register} />
-                        <Input defaultValue={getToday} colorLabel="black" className="input" label="Lịch chiếu (DD/MM/YYYY hh/mm/ss)" placeholder="Lịch chiếu (DD/MM/YYYY hh/mm/ss)" id="ngayChieuGioChieu" error={errors?.ngayChieuGioChieu?.message} register={register} />
-                        <Input colorLabel="black" className="input" label="Mã cụm rạp" placeholder="Mã cụm rạp" id="maRap" error={errors?.maRap?.message} register={register} />
-                        <Input colorLabel="black" className="input" label="Giá vé" placeholder="Giá vé" id="giaVe" error={errors?.giaVe?.message} register={register} />
+                        <Input className="input" label="Mã phim" placeholder="Mã phim" id="maPhim" error={errors?.maPhim?.message} register={register} />
+                        <Input defaultValue={getToday} className="input" label="Lịch chiếu (DD/MM/YYYY hh/mm/ss)" placeholder="Lịch chiếu (DD/MM/YYYY hh/mm/ss)" id="ngayChieuGioChieu" error={errors?.ngayChieuGioChieu?.message} register={register} />
+                        <Input className="input" label="Mã cụm rạp" placeholder="Mã cụm rạp" id="maRap" error={errors?.maRap?.message} register={register} />
+                        <Input className="input" label="Giá vé" placeholder="Giá vé" id="giaVe" error={errors?.giaVe?.message} register={register} />
                         <Button htmlType='submit' className='btn-register'>Tạo lịch chiếu</Button>
                     </form>
                 </Modal>

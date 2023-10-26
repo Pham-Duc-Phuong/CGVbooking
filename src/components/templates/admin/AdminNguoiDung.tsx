@@ -111,18 +111,17 @@ export const AdminNguoiDung = () => {
             <Modal footer={false} open={isModalOpen} onCancel={handleCancel} closeIcon={false}>
                 <form onSubmit={handleSubmit(setSubmit)}>
                     <div className="flex justify-end">
-                        <button type="reset" className="btn-reset">reset</button>
-                        <button type="reset" className="btn-reset !from-orange-400 !to-red-600 ml-[10px]" onClick={() => { handleCancel() }}>{xIconSVG()}</button>
+                        <button type="reset" className="btn-reset !from-orange-400 !to-red-600 ml-[10px] p-2" onClick={() => { handleCancel() }}>{xIconSVG()}</button>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-[20px]">
-                        <Input colorLabel="black" className="input pointer-events-none !text-gray-400" label="Tài khoản" placeholder="Tài khoản" id="taiKhoan" error={errors?.taiKhoan?.message} register={register} />
-                        <Input colorLabel="black" className="input" label="Mật khẩu" placeholder="Mật khẩu" id="matKhau" error={errors?.matKhau?.message} register={register} />
-                        <Input colorLabel="black" className="input" label="Họ tên" placeholder="Họ tên" id="hoTen" error={errors?.hoTen?.message} register={register} />
-                        <Input colorLabel="black" className="input" label="Số điện thoại" placeholder="Số điện thoại" id="soDt" error={errors?.soDt?.message} register={register} />
-                        <Input colorLabel="black" className="input" label="Email" placeholder="Email" id="email" error={errors?.email?.message} register={register} />
-                        <Input colorLabel="black" className="input pointer-events-none !text-gray-400" label="Mã nhóm" placeholder="Mã nhóm" id="maNhom" error={errors?.maNhom?.message} register={register} />
+                        <Input className="input pointer-events-none !text-gray-400" label="Tài khoản" placeholder="Tài khoản" id="taiKhoan" error={errors?.taiKhoan?.message} register={register} />
+                        <Input className="input" label="Mật khẩu" placeholder="Mật khẩu" id="matKhau" error={errors?.matKhau?.message} register={register} />
+                        <Input className="input" label="Họ tên" placeholder="Họ tên" id="hoTen" error={errors?.hoTen?.message} register={register} />
+                        <Input className="input" label="Số điện thoại" placeholder="Số điện thoại" id="soDt" error={errors?.soDt?.message} register={register} />
+                        <Input className="input" label="Email" placeholder="Email" id="email" error={errors?.email?.message} register={register} />
+                        <Input className="input pointer-events-none !text-gray-400" label="Mã nhóm" placeholder="Mã nhóm" id="maNhom" error={errors?.maNhom?.message} register={register} />
                     </div>
-                    <div className="mb-6 sm:h-[70px] h-[50px] sm:mt-[20px]">
+                    <div className="mb-6 sm:h-[70px] h-[50px]s sm:mt-[20px]">
                         <label htmlFor="maLoaiNguoiDung" className='label'>Mã loại người dùng</label>
                         <select name="maLoaiNguoiDung" id="maLoaiNguoiDung" className="input" {...register('maLoaiNguoiDung')}>
                             <option value="">Mã loại người dùng</option>

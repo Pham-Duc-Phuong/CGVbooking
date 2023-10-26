@@ -12,3 +12,14 @@ export const LayDanhSachPhimThunk = createAsyncThunk(
         }
     }
 )
+export const LayThongTinPhimThunk = createAsyncThunk(
+    "LayThongTinPhim",
+    async (payload:string, {rejectWithValue}) => {
+        try {
+            const data = await QuanLyPhimServices.LayThongTinPhim(payload)
+            return data.data.content
+        } catch (error) {
+            return rejectWithValue(error)
+        }
+    }
+)

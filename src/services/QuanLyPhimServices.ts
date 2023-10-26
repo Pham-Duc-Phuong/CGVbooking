@@ -6,5 +6,6 @@ const api = apiInstance({
 })
 
 export const QuanLyPhimServices = {
-    LayDanhSachPhim: (query:string) => api.get<ApiResponse<LayDanhSachPhim[]>>(`/LayDanhSachPhim?maNhom=${query}`)
+    LayDanhSachPhim: (query:string) => api.get<ApiResponse<LayDanhSachPhim[]>>(`/LayDanhSachPhim?maNhom=${query}`),
+    LayThongTinPhim: (query:string) => api.get<ApiResponse<LayDanhSachPhim>>(`/LayThongTinPhim?MaPhim=${query}`)
 }

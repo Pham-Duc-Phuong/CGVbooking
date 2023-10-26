@@ -1,8 +1,13 @@
-import { useAppSelector } from "store"
+import { useEffect } from "react"
+import { useAppDispatch, useAppSelector } from "store"
+import { ThongTinTaiKhoanThunk } from "store/quanLyNguoiDung"
 
 export const HistoryBooking = () => {
+    const dispatch = useAppDispatch()
+    useEffect(() => {
+        dispatch(ThongTinTaiKhoanThunk())
+    }, [dispatch])
     const { infoUser } = useAppSelector(state => state.quanLyNguoiDung)
-    console.log('infoUser', infoUser)
     return (
         <div>
             <div className="relative w-full overflow-x-auto shadow-md rounded-md sm:rounded-lg mt-[15px] lg:ml-3 h-[400px] lg:h-[650px] overflow-auto">

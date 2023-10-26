@@ -32,7 +32,7 @@ export const AddNguoiDung = () => {
                     <Input colorLabel="black" className="input" label="Họ tên" placeholder="Họ tên" id="hoTen" error={errors?.hoTen?.message} register={register} />
                     <Input colorLabel="black" className="input" label="Số điện thoại" placeholder="Số điện thoại" id="soDt" error={errors?.soDt?.message} register={register} />
                     <Input colorLabel="black" className="input" label="Email" placeholder="Email" id="email" error={errors?.email?.message} register={register} />
-                    <div>
+                    <div className="mb-6 sm:h-[70px] h-[50px]">
                         <label htmlFor="maNhom" className={cn("label", { "text-black": 'bg-white' })}>Mã nhóm</label>
                         <select name="maNhom" id="maNhom" className="input" {...register('maNhom')}>
                             <option value="">Mã loại người dùng</option>

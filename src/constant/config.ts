@@ -5,4 +5,5 @@ export const PATH = {
     admin: '/admin',
     movieList: '/movieList',
     booking: '/booking/:bookingID',
+    detailMovie: '/detailmovie/:movieID',
 }

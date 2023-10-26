@@ -100,7 +100,7 @@ export const LichChieuTemplate = () => {
                                 <th scope="col" className="px-4 py-3">
                                     Phim
                                 </th>
-                                <th scope="col" className="px-5 sm:px-8 py-3 w-[140px] sm:w-[200px]">
+                                <th scope="col" className="px-1 py-3 w-[110px] sm:w-[200px]">
 
                                 </th>
                             </tr>
@@ -109,18 +109,18 @@ export const LichChieuTemplate = () => {
                             {
                                 listDanhSach?.danhSachPhim?.map((a, index) => (
                                     <tr key={index} className="bg-white dark:bg-gray-800 border-b">
-                                        <th scope="row" className="py-2 font-medium  whitespace-nowrap ">
-                                            <img className='w-full sm:w-[100px]' src={a.hinhAnh} alt="" />
+                                        <th scope="row" className="py-2font-medium">
+                                            <img className='w-full' src={a.hinhAnh} alt="" />
                                         </th>
-                                        <th className="px-4 py-2 text-[13px] sm:text-[18px] text-gray-900 dark:text-white">
+                                        <td className="px-1 sm:px-4 py-2 text-[13px] sm:text-[18px] font-[400px] sm:font-medium text-gray-900 dark:text-white">
                                             {a.tenPhim}
-                                        </th>
-                                        <td className="px-3 py-2">
-                                            <button className='btn-reset flex items-center px-[10px] sm:px-[20px] xl:px-[30px] py-[5px] sm:py-[10px] xl:py-[10px] sm:w-auto' onClick={() => {
+                                        </td>
+                                        <td className="px-1 py-2">
+                                            <button className='btn-reset justify flex items-center px-2 sm:px-[20px] xl:px-[30px] py-[5px] sm:py-[10px] xl:py-[10px] sm:w-auto' onClick={() => {
                                                 showModal()
                                                 setChonMaPhim(a.maPhim)
                                                 setMaPhimLayThongTinLichChieuPhim(a.maPhim)
-                                            }}><i className="fa-solid fa-ticket mr-3"></i>Mua vé</button>
+                                            }}><img className='w-[30px] sm:w-[40px] mr-1' src='/src/assets/tickets-ticket-svgrepo-com.svg'></img>Mua vé</button>
                                         </td>
                                     </tr>
                                 ))
