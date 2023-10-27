@@ -7,6 +7,7 @@ import cn from 'classnames'
 import { useAppDispatch, useAppSelector } from 'store';
 import { useEffect, useState } from 'react';
 import { LayDanhSachPhimThunk } from 'store/quanLyPhim';
+import { TicketIcon } from 'constant';
 
 export const HomeTemplate = () => {
   const dispatch = useAppDispatch()
@@ -81,7 +82,7 @@ export const HomeTemplate = () => {
                     <img className='w-[20px] sm:w-[30px] mr-1' src='/src/assets/popcorn-svgrepo-com.svg'></img>Chi tiết
                     </p>
                     <p className="inline-flex justify-center items-center px-2 py-1 xl:px-3 xl:py-2 text-[13px] font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
-                    <img className='w-[20px] sm:w-[30px] mr-1' src='/src/assets/tickets-ticket-svgrepo-com.svg'></img>Đặt vé
+                    {TicketIcon()}Đặt vé
                     </p>
                   </div>
                 </div>
