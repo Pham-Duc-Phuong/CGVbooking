@@ -78,10 +78,10 @@ export const HomeTemplate = () => {
                   <p className="mb-3 text-[9px] sm:text-sm font-normal text-gray-700 dark:text-gray-400">{a.moTa.substring(0, 39)}...</p>
                   <div className='flex flex-col lg:flex-row justify-between gap-1'>
                     <p className="inline-flex justify-center items-center px-2 py-1 xl:px-3 xl:py-2 text-[13px] font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    <img className='w-[20px] sm:w-[30px] mr-1' src='/assets/popcorn-svgrepo-com.svg'></img>Chi tiết
+                    <img className='w-[20px] sm:w-[30px] mr-1' src='/src/assets/popcorn-svgrepo-com.svg'></img>Chi tiết
                     </p>
                     <p className="inline-flex justify-center items-center px-2 py-1 xl:px-3 xl:py-2 text-[13px] font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
-                    <img className='w-[20px] sm:w-[30px] mr-1' src='/assets/tickets-ticket-svgrepo-com.svg'></img>Đặt vé
+                    <img className='w-[20px] sm:w-[30px] mr-1' src='/src/assets/tickets-ticket-svgrepo-com.svg'></img>Đặt vé
                     </p>
                   </div>
                 </div>
