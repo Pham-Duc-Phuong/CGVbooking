@@ -25,6 +25,7 @@ export const HomeTemplate = () => {
   }, [dispatch, chonMaNhom, maPhim])
   const { LayDanhSachPhim } = useAppSelector(state => state.QuanLyPhim)
   const { LayThongTinLichChieuPhim } = useAppSelector(state => state.QuanLyRap)
+  const { accessToken } = useAppSelector(state => state.quanLyNguoiDung)
   const locLayDanhSachPhim = LayDanhSachPhim?.filter(a => a.tenPhim.toLowerCase().includes(locPhimTheoTen.toLowerCase()))
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isOpenCumRap, setIsOpenCumRap] = useState(false)
@@ -94,8 +95,12 @@ export const HomeTemplate = () => {
                       <img className='w-[20px] sm:w-[30px] mr-1' src='/images/popcorn-svgrepo-com.svg'></img>Chi tiết
                     </p>
                     <p className="inline-flex justify-center items-center px-2 py-1 xl:px-3 xl:py-2 text-[13px] font-medium text-center text-white bg-red-500 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-800" onClick={() => {
-                      setIsModalOpen(true)
-                      setMaPhim(a.maPhim)
+                      if (!accessToken) {
+                        navigate(PATH.login)
+                      } else {
+                        setIsModalOpen(true)
+                        setMaPhim(a.maPhim)
+                      }
                     }}>
                       <img className='w-[20px] sm:w-[30px] mr-1' src='/images/tickets-ticket-svgrepo-com.svg'></img>Đặt vé
                     </p>

@@ -18,6 +18,7 @@ export const DetailMovieTemplate = () => {
   }, [dispatch, movieID])
   const { ThongTinPhim } = useAppSelector(state => state.QuanLyPhim)
   const { LayThongTinLichChieuPhim } = useAppSelector(state => state.QuanLyRap)
+  const { accessToken } = useAppSelector(state => state.quanLyNguoiDung)
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isOpenCumRap, setIsOpenCumRap] = useState(false);
   const [isOpenLichChieu, setIsOpenLichChieu] = useState(false);
@@ -54,7 +55,11 @@ export const DetailMovieTemplate = () => {
         <div className="flex flex-col w-full justify-start gap-2 p-2">
           <button className="btn-register !text-[11px] sm:!text-[17px] !m-0 w-full flex items-center justify-center dark:text-white" onClick={() => { setIsOpenTrailer(true) }}><img className="w-[20px] sm:w-[30px] mr-1" src="/images/cinema-film-movie-svgrepo-com.svg"></img>Trailer</button>
           <button className="btn-cancel !text-[11px] sm:!text-[17px] !m-0 w-full flex items-center justify-center dark:text-white" onClick={() => {
-            setIsModalOpen(true)
+            if (!accessToken) {
+              navigate(PATH.login)
+            } else {
+              setIsModalOpen(true)
+            }
           }}><img className="w-[20px] sm:w-[30px] mr-1" src="/images/tickets-ticket-svgrepo-com.svg"></img>Đặt vé</button>
           <button className="btn-add !m-0 !h-[35px] sm:!h-[40px] w-full flex items-center justify-center dark:text-white" onClick={() => { window.history.back() }}><img className="w-[20px] sm:w-[30px] mr-1" src="/images/popcorn-svgrepo-com.svg"></img>Quay lại</button>
         </div>
