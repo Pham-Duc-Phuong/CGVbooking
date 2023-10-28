@@ -28,20 +28,8 @@ export const AdminLichChieu = () => {
     const [chonMaCumRap, setChonMaCumRap] = useState('bhd-star-cineplex-pham-hung')
     const [chonMaPhim, setChonMaPhim] = useState<number>()
     const [maPhimlayThongTinLichChieuPhim, setMaPhimLayThongTinLichChieuPhim] = useState<number>(1337)
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const showModal = () => {
-        setIsModalOpen(true);
-    };
-    const handleCancel = () => {
-        setIsModalOpen(false);
-    };
-    const [taoLichChieu, setTaoLichChieu] = useState(false);
-    const showTaoLichChieu = () => {
-        setTaoLichChieu(true);
-    };
-    const handleCancelTaoLichChieu = () => {
-        setTaoLichChieu(false);
-    };
+    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [taoLichChieu, setTaoLichChieu] = useState(false)
     useEffect(() => {
         dispatch(LayThongTinLichChieuHeThongRapThunk(chonMaNhom))
         dispatch(LayThongTinLichChieuPhimThunk(maPhimlayThongTinLichChieuPhim))
@@ -57,10 +45,9 @@ export const AdminLichChieu = () => {
     }, [listLichChieu, reset, listDanhSach])
     const setSubmit: SubmitHandler<TaoLichChieu> = async (values) => {
         const valuesLichChieu = { ...values, maPhim: Number(values.maPhim), giaVe: Number(values.giaVe) }
-        console.log('valuesLichChieu', valuesLichChieu)
         try {
             await QuanLyDatVeServices.TaoLichChieu(valuesLichChieu)
-            dispatch(LayThongTinLichChieuHeThongRapThunk(chonMaNhom))
+            dispatch(LayThongTinLichChieuPhimThunk(maPhimlayThongTinLichChieuPhim))
             toast.success('Tạo lịch chiếu thành công')
         } catch (error) {
             toast.error(error.response.data.content)
@@ -149,11 +136,11 @@ export const AdminLichChieu = () => {
                                         </td>
                                         <td className="px-1 py-2">
                                             <button className='btn-reset flex items-center justify-center !w-[120px] sm:!w-[200px] text-[11px] sm:text-[16px] py-[5px] sm:py-[10px] xl:py-[10px]' onClick={() => {
-                                                showTaoLichChieu()
+                                                setTaoLichChieu(true)
                                                 setChonMaPhim(a.maPhim)
                                             }}><i className="fa-regular fa-calendar-plus mr-3"></i>Tạo lịch chiếu</button>
                                             <button className='btn-reset from-orange-400 to-red-600 flex items-center justify-center !w-[120px] sm:!w-[200px] text-[11px] sm:text-[16px] py-[5px] sm:py-[10px] xl:py-[10px] mt-[6px] sm:mt-2 ' onClick={() => {
-                                                showModal()
+                                                setIsModalOpen(true)
                                                 setChonMaPhim(a.maPhim)
                                                 setMaPhimLayThongTinLichChieuPhim(a.maPhim)
                                             }}><i className="fa-regular fa-calendar-days mr-3"></i>Xem lịch chiếu</button>
@@ -164,13 +151,13 @@ export const AdminLichChieu = () => {
                         </tbody>
                     </table>
                 </div>
-                <Modal footer={false} open={isModalOpen} onCancel={handleCancel} closeIcon={false}>
+                <Modal footer={false} open={isModalOpen} onCancel={() => { setIsModalOpen(false) }} closeIcon={false}>
                     <div className='flex justify-between mb-2'>
                         <div className='flex'>
                             <img className='w-[60px]' src={listLichChieu?.hinhAnh} alt="" />
                             <p className='text-[20px] font-[500] mx-2 text-white'>{listLichChieu?.tenPhim}</p>
                         </div>
-                        <button className='btn-reset h-fit !from-orange-400 !to-red-600 p-2' onClick={() => { handleCancel() }}>{xIconSVG()}</button>
+                        <button className='btn-reset h-fit !from-orange-400 !to-red-600 p-2' onClick={() => { setIsModalOpen(false) }}>{xIconSVG()}</button>
                     </div>
                     <div className='flex flex-wrap gap-[10px]'>
                         {
@@ -191,11 +178,11 @@ export const AdminLichChieu = () => {
                         }
                     </div>
                 </Modal>
-                <Modal footer={false} open={taoLichChieu} onCancel={handleCancelTaoLichChieu} closeIcon={false}>
+                <Modal footer={false} open={taoLichChieu} onCancel={() => { setTaoLichChieu(false) }} closeIcon={false}>
                     <form action="" onSubmit={handleSubmit(setSubmit)}>
                         <div className='flex justify-between border-b pb-2 mb-2'>
                             <h1 className='text-[20px] font-medium text-white'><i className="fa-regular fa-calendar-plus mr-3"></i>Tạo lịch chiếu</h1>
-                            <button type="button" className="absolute top-3 right-2.5 btn-reset p-2 sm:p-3 from-orange-400 to-red-600" onClick={() => { handleCancelTaoLichChieu() }}>
+                            <button type="button" className="absolute top-3 right-2.5 btn-reset p-2 sm:p-3 from-orange-400 to-red-600" onClick={() => { setTaoLichChieu(false) }}>
                                 {xIconSVG()}
                                 <span className="sr-only">Close modal</span>
                             </button>
