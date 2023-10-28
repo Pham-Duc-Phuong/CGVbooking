@@ -7,12 +7,14 @@ import cn from 'classnames'
 import { useAppDispatch, useAppSelector } from 'store';
 import { useEffect, useState } from 'react';
 import { LayDanhSachPhimThunk } from 'store/quanLyPhim';
-import { TicketIcon } from 'constant';
+import { useNavigate, generatePath } from 'react-router-dom';
+import { PATH } from 'constant';
 
 export const HomeTemplate = () => {
   const dispatch = useAppDispatch()
   const [chonMaNhom, setChonMaNhom] = useState('GP09')
   const [locPhimTheoTen, setLocPhimTheoTen] = useState('')
+  const navigate = useNavigate()
   useEffect(() => {
     dispatch(LayDanhSachPhimThunk(chonMaNhom))
   }, [dispatch, chonMaNhom])
@@ -78,11 +80,11 @@ export const HomeTemplate = () => {
                   <h5 className="mb-2 text-[10px] sm:text-base font-bold tracking-tight text-gray-900 dark:text-white">{a.tenPhim}</h5>
                   <p className="mb-3 text-[9px] sm:text-sm font-normal text-gray-700 dark:text-gray-400">{a.moTa.substring(0, 39)}...</p>
                   <div className='flex flex-col lg:flex-row justify-between gap-1'>
-                    <p className="inline-flex justify-center items-center px-2 py-1 xl:px-3 xl:py-2 text-[13px] font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    <p className="inline-flex justify-center items-center px-2 py-1 xl:px-3 xl:py-2 text-[13px] font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={()=>{const path = generatePath(PATH.detailMovie,{ movieID: a.maPhim}); navigate(path)}}>
                     <img className='w-[20px] sm:w-[30px] mr-1' src='/images/popcorn-svgrepo-com.svg'></img>Chi tiết
                     </p>
-                    <p className="inline-flex justify-center items-center px-2 py-1 xl:px-3 xl:py-2 text-[13px] font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
-                    <img className='w-[20px] sm:w-[30px] mr-1' src='/images/popcorn-svgrepo-com.svg'></img>Đặt vé
+                    <p className="inline-flex justify-center items-center px-2 py-1 xl:px-3 xl:py-2 text-[13px] font-medium text-center text-white bg-red-500 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-800">
+                    <img className='w-[20px] sm:w-[30px] mr-1' src='/images/tickets-ticket-svgrepo-com.svg'></img>Đặt vé
                     </p>
                   </div>
                 </div>

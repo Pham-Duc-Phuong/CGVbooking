@@ -16,13 +16,6 @@ export const LichChieuTemplate = () => {
     const [maPhimlayThongTinLichChieuPhim, setMaPhimLayThongTinLichChieuPhim] = useState<number>(1337)
     const [chonMaPhim, setChonMaPhim] = useState<number>()
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const showModal = () => {
-        setIsModalOpen(true);
-    };
-    const handleCancel = () => {
-        setIsModalOpen(false);
-    };
-
     useEffect(() => {
         dispatch(LayThongTinLichChieuHeThongRapThunk(chonMaNhom))
         dispatch(LayThongTinLichChieuPhimThunk(maPhimlayThongTinLichChieuPhim))
@@ -109,18 +102,24 @@ export const LichChieuTemplate = () => {
                             {
                                 listDanhSach?.danhSachPhim?.map((a, index) => (
                                     <tr key={index} className="bg-white dark:bg-gray-800 border-b">
-                                        <th scope="row" className="py-2font-medium">
+                                        <th scope="row" className="py-2font-medium cursor-pointer" onClick={() => {
+                                            const path = generatePath(PATH.detailMovie, { movieID: a.maPhim })
+                                            navigate(path)
+                                        }}>
                                             <img className='w-full' src={a.hinhAnh} alt="" />
                                         </th>
-                                        <td className="px-1 sm:px-4 py-2 text-[13px] sm:text-[18px] font-[400px] sm:font-medium text-gray-900 dark:text-white">
+                                        <td className="px-1 sm:px-4 py-2 text-[13px] sm:text-[18px] font-[400px] cursor-pointer hover:underline sm:font-medium text-gray-900 dark:text-white" onClick={() => {
+                                            const path = generatePath(PATH.detailMovie, { movieID: a.maPhim })
+                                            navigate(path)
+                                        }}>
                                             {a.tenPhim}
                                         </td>
                                         <td className="px-1 py-2">
                                             <button className='btn-reset justify flex items-center px-2 sm:px-[20px] xl:px-[30px] py-[5px] sm:py-[10px] xl:py-[10px] sm:w-auto' onClick={() => {
-                                                showModal()
+                                                setIsModalOpen(true)
                                                 setChonMaPhim(a.maPhim)
                                                 setMaPhimLayThongTinLichChieuPhim(a.maPhim)
-                                            }}><img className='w-[30px] sm:w-[40px] mr-1' src='/assets/tickets-ticket-svgrepo-com.svg'></img>Mua vé</button>
+                                            }}><img className='w-[30px] sm:w-[40px] mr-1' src='/images/tickets-ticket-svgrepo-com.svg'></img>Mua vé</button>
                                         </td>
                                     </tr>
                                 ))
@@ -128,34 +127,34 @@ export const LichChieuTemplate = () => {
                         </tbody>
                     </table>
                 </div>
-                <Modal footer={false} open={isModalOpen} onCancel={handleCancel} closeIcon={false}>
-                    <div className='flex justify-between mb-2'>
-                        <div className='flex'>
-                            <img className='w-[60px]' src={listLichChieu?.hinhAnh} alt="" />
-                            <p className='text-[20px] font-[500] mx-2 text-white'>{listLichChieu?.tenPhim}</p>
-                        </div>
-                        <button className='btn-reset h-fit !from-orange-400 !to-red-600 sm:px-[9px]' onClick={() => { handleCancel() }}>X</button>
-                    </div>
-                    <div className='flex flex-wrap gap-[10px]'>
-                        {
-                            listLichChieu?.lstLichChieuTheoPhim?.map((b, index) => (
-                                <a href='#' key={index} onClick={() => {
-                                    const path = generatePath(PATH.booking, { bookingID: b.maLichChieu })
-                                    navigate(path)
-                                }} className='border h-fit text-[11px] sm:text-[16px] px-1 py-1 rounded-md cursor-pointer !text-white dark:text-white hover:!text-cyan-400 hover:border-cyan-400 focus:!text-white focus:!bg-cyan-400'>{("0" + new Date(b.ngayChieuGioChieu).getHours()).slice(-2)}:{("0" + new Date(b.ngayChieuGioChieu).getMinutes()).slice(-2)}</a>
-                            ))
-                        }
-                        {
-                            LayThongTinLichChieuPhimTheoMaCumRap?.lichChieuPhim?.map((b, index) => (
-                                <a href='#' key={index} onClick={() => {
-                                    const path = generatePath(PATH.booking, { bookingID: b.maLichChieu })
-                                    navigate(path)
-                                }} className='border h-fit text-[11px] sm:text-[16px] px-1 py-1 rounded-md cursor-pointer !text-white dark:text-white hover:!text-cyan-400 hover:border-cyan-400 focus:!text-white focus:!bg-cyan-400'>{("0" + new Date(b.ngayChieuGioChieu).getHours()).slice(-2)}:{("0" + new Date(b.ngayChieuGioChieu).getMinutes()).slice(-2)}</a>
-                            ))
-                        }
-                    </div>
-                </Modal>
             </div>
+            <Modal footer={false} open={isModalOpen} onCancel={() => { setIsModalOpen(false) }} closeIcon={false}>
+                <div className='flex justify-between mb-2'>
+                    <div className='flex'>
+                        <img className='w-[60px]' src={listLichChieu?.hinhAnh} alt="" />
+                        <p className='text-[20px] font-[500] mx-2 text-white'>{listLichChieu?.tenPhim}</p>
+                    </div>
+                    <button className='btn-reset h-fit !from-orange-400 !to-red-600 sm:px-[9px]' onClick={() => { setIsModalOpen(false) }}>X</button>
+                </div>
+                <div className='flex flex-wrap gap-[10px]'>
+                    {
+                        listLichChieu?.lstLichChieuTheoPhim?.map((b, index) => (
+                            <p key={index} onClick={() => {
+                                const path = generatePath(PATH.booking, { bookingID: b.maLichChieu })
+                                navigate(path)
+                            }} className='border h-fit text-[11px] sm:text-[16px] px-1 py-1 rounded-md cursor-pointer !text-white dark:text-white hover:!text-cyan-400 hover:border-cyan-400 focus:!text-white focus:!bg-cyan-400'>{("0" + new Date(b.ngayChieuGioChieu).getHours()).slice(-2)}:{("0" + new Date(b.ngayChieuGioChieu).getMinutes()).slice(-2)}</p>
+                        ))
+                    }
+                    {
+                        LayThongTinLichChieuPhimTheoMaCumRap?.lichChieuPhim?.map((b, index) => (
+                            <p key={index} onClick={() => {
+                                const path = generatePath(PATH.booking, { bookingID: b.maLichChieu })
+                                navigate(path)
+                            }} className='border h-fit text-[11px] sm:text-[16px] px-1 py-1 rounded-md cursor-pointer !text-white dark:text-white hover:!text-cyan-400 hover:border-cyan-400 focus:!text-white focus:!bg-cyan-400'>{("0" + new Date(b.ngayChieuGioChieu).getHours()).slice(-2)}:{("0" + new Date(b.ngayChieuGioChieu).getMinutes()).slice(-2)}</p>
+                        ))
+                    }
+                </div>
+            </Modal>
         </div>
     )
 }

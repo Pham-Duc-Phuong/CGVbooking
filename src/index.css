@@ -22,7 +22,7 @@
     @apply text-white border-transparent bg-gradient-to-r hover:border-transparent from-blue-700 to-purple-700 hover:bg-gradient-to-bl hover:text-white focus:ring-1 focus:outline-none focus:ring-orange-200 font-medium rounded-md text-[13px]  sm:text-[16px] text-center px-[7px]
   }
   .btn-add{
-    @apply !text-white my-[15px] !border-transparent !bg-gradient-to-r hover:!border-transparent !from-blue-700 !to-purple-700 hover:!bg-gradient-to-bl hover:!text-white !font-medium !rounded-lg !text-[11px]  sm:!text-[17px] !text-center !mr-2 !h-[30px] sm:!h-[40px] !w-full !tracking-widest
+    @apply !text-white my-[15px] !border-transparent !bg-gradient-to-r hover:!border-transparent !from-blue-700 !to-purple-700 hover:!bg-gradient-to-bl hover:!text-white focus:!ring-4 focus:!outline-none focus:!ring-blue-600 !font-medium !rounded-lg !text-[11px]  sm:!text-[17px] !text-center !mr-2 !h-[30px] sm:!h-[40px] !w-full !tracking-widest
   }
   .input{
     @apply bg-gray-50 border border-gray-300 text-gray-900 text-xs sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-[8px] sm:p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
@@ -82,5 +82,9 @@
   }
   .spanPayType{
     @apply whitespace-nowrap
+  }
+  /* detailMovie */
+  .detailMovie{
+    @apply mb-1 sm:mb-3 text-xs sm:text-base font-normal text-gray-700 dark:text-gray-400
   }
 }

@@ -3,6 +3,7 @@ import { AuthLayout } from 'components'
 import { Register, Login, Home, LichChieu, Booking, Account, Admin } from "pages";
 import { PATH } from "constant/config";
 import { MainLayout } from "components";
+import { DetailMovie } from "pages/DetailMovie";
 
 export const router: RouteObject[] = [
     {
@@ -14,7 +15,7 @@ export const router: RouteObject[] = [
                 element: <Home />
             },
             {
-                path: PATH.movieList,
+                path: PATH.lichchieu,
                 element: <LichChieu />
             },
             {
@@ -31,7 +32,7 @@ export const router: RouteObject[] = [
             },
             {
                 path: PATH.detailMovie,
-                element: <Admin />
+                element: <DetailMovie />
             },
         ]
     },

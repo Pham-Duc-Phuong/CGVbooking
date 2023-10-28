@@ -3,9 +3,10 @@ import cn from 'classnames'
 import { PATH } from "constant"
 import { useNavigate } from "react-router-dom"
 import { ThongTinTaiKhoanThunk, quanLyNguoiDungActions } from "store/quanLyNguoiDung"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { Popover } from "."
 import { Avatar } from "antd"
+
 export const Header = () => {
     const { userLogin, accessToken } = useAppSelector(state => state.quanLyNguoiDung)
     const navigate = useNavigate()
@@ -22,7 +23,7 @@ export const Header = () => {
     }
     useEffect(() => {
         dispatch(ThongTinTaiKhoanThunk())
-    },[dispatch])
+    }, [dispatch])
     return (
         <div className="shadow-lg dark:shadow-darkMode z-50 fixed w-full">
             <nav className="bg-white border-gray-200 dark:bg-gray-900">
@@ -46,7 +47,7 @@ export const Header = () => {
                                         <div id="user-dropdown">
                                             <div className="px-4 py-3">
                                                 <span className="block text-[18px] text-gray-900 mb-[10px] font-[500]">{userLogin?.hoTen}</span>
-                                                <span className="block text-sm  text-gray-500 truncate font-[500]">{userLogin?.email.substring(0,15)}...</span>
+                                                <span className="block text-sm  text-gray-500 truncate font-[500]">{userLogin?.email.substring(0, 15)}...</span>
                                             </div>
                                             <ul className="py-2">
                                                 <li>
@@ -60,7 +61,7 @@ export const Header = () => {
                                                     }}>Quản lý</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#" className="a-header font-[500]" onClick={() => { dispatch(quanLyNguoiDungActions.logOut())}}>Đăng xuất</a>
+                                                    <a href="#" className="a-header font-[500]" onClick={() => { dispatch(quanLyNguoiDungActions.logOut()) }}>Đăng xuất</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -68,9 +69,9 @@ export const Header = () => {
                                     trigger="click"
                                     arrow={false}
                                 >
-                                    <Avatar size="large" className="cursor-pointer">
+                                    <p className="cursor-pointer px-3 py-2 rounded-[50%]">
                                         <i className="fa-regular fa-user text-[16px] text-white"></i>
-                                    </Avatar>
+                                    </p>
                                 </Popover>
                             )
                         }
@@ -99,7 +100,7 @@ export const Header = () => {
                             </li>
                             <li>
                                 <p className="p-header" onClick={() => {
-                                    navigate(PATH.movieList)
+                                    navigate(PATH.lichchieu)
                                 }}>Lịch chiếu</p>
                             </li>
                             <li>

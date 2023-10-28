@@ -3,7 +3,8 @@ export const PATH = {
     register: '/register',
     account: '/account',
     admin: '/admin',
-    movieList: '/movieList',
+    lichchieu: '/lichchieu',
     booking: '/booking/:bookingID',
     detailMovie: '/detailmovie/:movieID',
+    datvephim: '/datvephim/:movieID',
 }
