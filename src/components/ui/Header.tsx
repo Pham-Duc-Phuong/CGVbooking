@@ -3,9 +3,8 @@ import cn from 'classnames'
 import { PATH } from "constant"
 import { useNavigate } from "react-router-dom"
 import { ThongTinTaiKhoanThunk, quanLyNguoiDungActions } from "store/quanLyNguoiDung"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { Popover } from "."
-import { Avatar } from "antd"
 
 export const Header = () => {
     const { userLogin, accessToken } = useAppSelector(state => state.quanLyNguoiDung)
@@ -29,7 +28,7 @@ export const Header = () => {
             <nav className="bg-white border-gray-200 dark:bg-gray-900">
                 <div className="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-4">
                     <a href={'/'} className="flex items-center">
-                        <img src="/images/logo.jpg" className="h-[45px] mr-2 sm:mr-3 rounded-[50%]" alt="Logo" />
+                        <img src="/images/logo.jpg" className="h-[30px] sm:h-[45px] mr-2 sm:mr-3 rounded-[50%]" alt="Logo" />
                         <span className="self-center text-xl sm:text-2xl font-semibold whitespace-nowrap tracking-[2px] dark:text-white">CGI</span>
                     </a>
                     <div className="flex items-center md:order-2">
@@ -69,8 +68,8 @@ export const Header = () => {
                                     trigger="click"
                                     arrow={false}
                                 >
-                                    <p className="cursor-pointer px-3 py-2 rounded-[50%]">
-                                        <i className="fa-regular fa-user text-[16px] text-white"></i>
+                                    <p className="cursor-pointer h-[30px] w-[30px] sm:h-[40px] sm:w-[40px] flex items-center justify-center rounded-[50%]">
+                                        <i className="fa-regular fa-user text-[12px] sm:text-[16px] text-white"></i>
                                     </p>
                                 </Popover>
                             )

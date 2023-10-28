@@ -60,8 +60,8 @@ export const DetailMovieTemplate = () => {
         </div>
       </div>
       <div className={cn({ 'hidden': !isOpenTrailer })}>
-        <div className="absolute top-0 left-0 w-full h-full bg-black opacity-40" onClick={() => { setIsOpenTrailer(false) }}></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20"><ReactPlayer width={widthTrailer} controls={true} playing={isOpenTrailer} url={ThongTinPhim?.trailer} /></div>
+        <div className="fixed top-0 left-0 w-full h-full bg-black opacity-40" onClick={() => { setIsOpenTrailer(false) }}></div>
+        <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20"><ReactPlayer width={widthTrailer} controls={true} playing={isOpenTrailer} url={ThongTinPhim?.trailer} /></div>
       </div>
       <div className="inline-flex items-center justify-center w-full">
         <hr className="w-[500px] h-1 my-8 bg-gray-200 border-0 rounded dark:bg-gray-700" />
@@ -70,13 +70,15 @@ export const DetailMovieTemplate = () => {
         </div>
       </div>
       <p className="max-w-screen-lg m-auto detailMovie">{ThongTinPhim?.moTa}</p>
+      {/* Modal */}
       <div className={cn({ 'hidden': !isModalOpen })}>
-        <div className="absolute top-0 left-0 w-full h-full bg-black opacity-40" onClick={() => { setIsModalOpen(false) }}></div>
-        <ul className="overflow-auto h-fit w-[325px] sm:w-[600px] rounded-lg font-medium text-center text-gray-500 p-2 sm:py-4 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 bg-white dark:bg-gray-800 dark:text-gray-100">
+        <div className="fixed top-0 left-0 w-full h-full bg-black opacity-40" onClick={() => { setIsModalOpen(false) }}></div>
+        <ul className="overflow-auto h-fit w-[325px] sm:w-[600px] rounded-lg font-medium text-center text-gray-500 p-2 sm:py-4 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 bg-white dark:bg-gray-800 dark:text-gray-100">
           <h1 className="text-2xl dark:text-white">Hệ thống rạp</h1>
           <div className="flex flex-wrap justify-center items-center gap-[30px]">
             {
-              LayThongTinLichChieuPhim?.heThongRapChieu?.map((a, index) => {
+              !LayThongTinLichChieuPhim?.heThongRapChieu.length ? <div className="inline-flex items-center justify-center w-full"><hr className="w-[500px] h-1 my-8 bg-gray-200 border-0 rounded dark:bg-gray-700" /><div className="absolute font-[600] text-xl px-4 -translate-x-1/2 bg-white left-1/2 dark:bg-gray-800 dark:text-gray-400">Không có lịch chiếu</div>
+              </div> : LayThongTinLichChieuPhim?.heThongRapChieu?.map((a, index) => {
                 return (
                   <li key={index} className="heThongRap flex flex-col items-center p-5" onClick={() => {
                     setChonMaHeThongRap(a.maHeThongRap)
@@ -93,8 +95,8 @@ export const DetailMovieTemplate = () => {
         </ul>
       </div>
       <div className={cn({ 'hidden': !isOpenCumRap })}>
-        <div className="absolute top-0 left-0 w-full h-full bg-black opacity-40" onClick={() => { setIsOpenCumRap(false) }}></div>
-        <ul className="overflow-auto h-fit w-[325px] sm:w-[500px] rounded-lg font-medium text-center text-gray-500 p-2 sm:py-4 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 bg-white dark:bg-gray-800 dark:text-gray-100">
+        <div className="fixed top-0 left-0 w-full h-full bg-black opacity-40" onClick={() => { setIsOpenCumRap(false) }}></div>
+        <ul className="overflow-auto h-fit w-[325px] sm:w-[500px] rounded-lg font-medium text-center text-gray-500 p-2 sm:py-4 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 bg-white dark:bg-gray-800 dark:text-gray-100">
           <h1 className="text-2xl mb-3 dark:text-white">Cụm rạp</h1>
           <div className="flex flex-wrap justify-center items-center gap-[30px]">
             {
@@ -115,8 +117,8 @@ export const DetailMovieTemplate = () => {
         </ul>
       </div>
       <div className={cn({ 'hidden': !isOpenLichChieu })}>
-        <div className="absolute top-0 left-0 w-full h-full bg-black opacity-40" onClick={() => { setIsOpenLichChieu(false) }}></div>
-        <ul className="overflow-auto w-[325px] sm:w-[500px] rounded-lg font-medium text-center text-gray-500 p-2 sm:py-4flex flex-wrap justify-center items-center gap-[30px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 bg-white dark:bg-gray-800 dark:text-gray-100">
+        <div className="fixed top-0 left-0 w-full h-full bg-black opacity-40" onClick={() => { setIsOpenLichChieu(false) }}></div>
+        <ul className="overflow-auto w-[325px] sm:w-[500px] rounded-lg font-medium text-center text-gray-500 p-2 sm:py-4flex flex-wrap justify-center items-center gap-[30px] fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 bg-white dark:bg-gray-800 dark:text-gray-100">
           <h1 className="text-2xl mb-3 dark:text-white">Lịch Chiếu</h1>
           <div className="flex flex-wrap justify-center items-center gap-[30px]">
             {

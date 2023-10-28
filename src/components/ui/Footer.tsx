@@ -7,7 +7,7 @@ export const Footer = () => {
           <div className="md:flex md:justify-between">
             <div className="mb-6 md:mb-0">
               <a href="https://bc47-caption-elearning.vercel.app/" className="flex items-center">
-                <img src="/images/logo.jpg" className="h-[60px] mr-3 rounded-[50%]" alt="Logo" />
+                <img src="/images/logo.jpg" className="h-[30px] sm:h-[60px] mr-3 rounded-[50%]" alt="Logo" />
                 <span className="self-center text-[40px] font-semibold whitespace-nowrap tracking-[3px] dark:text-white">CGI</span>
               </a>
             </div>

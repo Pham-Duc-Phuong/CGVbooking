@@ -5,7 +5,7 @@ export const MainLayout = () => {
     return (
         <div className="m-auto">
             <Header />
-            <div className="dark:bg-[#111827] pt-[75px]">
+            <div className="dark:bg-[#111827] pt-[62px] sm:pt-[75px]">
                 <Outlet />
             </div>
             <Footer />
