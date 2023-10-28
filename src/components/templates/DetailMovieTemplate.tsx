@@ -132,7 +132,7 @@ export const DetailMovieTemplate = () => {
                   <p key={index} onClick={() => {
                     const path = generatePath(PATH.booking, { bookingID: b.maLichChieu })
                     navigate(path)
-                  }} className='border h-fit text-[11px] sm:text-[16px] px-1 py-1 rounded-md cursor-pointer !text-white dark:text-white hover:!text-cyan-400 hover:border-cyan-400 focus:!text-white focus:!bg-cyan-400'><span>{("0" + new Date(b.ngayChieuGioChieu).getHours()).slice(-2)}:{("0" + new Date(b.ngayChieuGioChieu).getMinutes()).slice(-2)}</span><span className="ml-1 sm:ml-2">{("0" + new Date(b.ngayChieuGioChieu).getDate()).slice(-2)}/{("0" + new Date(b.ngayChieuGioChieu).getMonth()).slice(-2)}</span></p>
+                  }} className='border h-fit text-[11px] sm:text-[16px] px-1 py-1 rounded-md cursor-pointer dark:text-white hover:!text-cyan-400 hover:border-cyan-400 focus:!text-white focus:!bg-cyan-400'><span>{("0" + new Date(b.ngayChieuGioChieu).getHours()).slice(-2)}:{("0" + new Date(b.ngayChieuGioChieu).getMinutes()).slice(-2)}</span><span className="ml-1 sm:ml-2">{("0" + new Date(b.ngayChieuGioChieu).getDate()).slice(-2)}/{("0" + new Date(b.ngayChieuGioChieu).getMonth()).slice(-2)}</span></p>
                 )
               })
             }
