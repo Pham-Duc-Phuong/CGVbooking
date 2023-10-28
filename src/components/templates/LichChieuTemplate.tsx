@@ -21,6 +21,7 @@ export const LichChieuTemplate = () => {
         dispatch(LayThongTinLichChieuPhimThunk(maPhimlayThongTinLichChieuPhim))
     }, [dispatch, chonMaNhom, maPhimlayThongTinLichChieuPhim])
     const { ThongTinLichChieuHeThongRap, LayThongTinLichChieuPhim } = useAppSelector(state => state.QuanLyRap)
+    const { accessToken } = useAppSelector(state => state.quanLyNguoiDung)
     const listCumRap = ThongTinLichChieuHeThongRap?.find(a => a?.maHeThongRap === chonMaHeThongRap)
     const listDanhSach = listCumRap?.lstCumRap.find(a => a.maCumRap === chonMaCumRap)
     const listLichChieu = listDanhSach?.danhSachPhim?.find(a => a.maPhim === chonMaPhim)
@@ -116,9 +117,13 @@ export const LichChieuTemplate = () => {
                                         </td>
                                         <td className="px-1 py-2">
                                             <button className='btn-reset justify flex items-center px-2 sm:px-[20px] xl:px-[30px] py-[5px] sm:py-[10px] xl:py-[10px] sm:w-auto' onClick={() => {
-                                                setIsModalOpen(true)
-                                                setChonMaPhim(a.maPhim)
-                                                setMaPhimLayThongTinLichChieuPhim(a.maPhim)
+                                                if (!accessToken) {
+                                                    navigate(PATH.login)
+                                                } else {
+                                                    setIsModalOpen(true)
+                                                    setChonMaPhim(a.maPhim)
+                                                    setMaPhimLayThongTinLichChieuPhim(a.maPhim)
+                                                }
                                             }}><img className='w-[30px] sm:w-[40px] mr-1' src='/images/tickets-ticket-svgrepo-com.svg'></img>Mua vé</button>
                                         </td>
                                     </tr>
