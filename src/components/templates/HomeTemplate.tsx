@@ -41,7 +41,7 @@ export const HomeTemplate = () => {
         spaceBetween={0}
         slidesPerView={1}
         onSlideChange={() => console.log()}
-        onSwiper={(swiper) => console.log()}
+        onSwiper={(swiper) => console.log(swiper)}
         autoplay={{
           delay: 2000,
           disableOnInteraction: false
