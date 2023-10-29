@@ -21,13 +21,13 @@ export const AccountTemplate = () => {
           </li>
         </ul>
       </div>
-      <div className={activeTabs === 1 ? 'block h-[800px]' : 'hidden'}>
+      <div className={activeTabs === 1 ? 'block h-auto sm:h-[800px]' : 'hidden'}>
         <AccountInfo />
       </div>
-      <div className={activeTabs === 2 ? 'block h-[800px]' : 'hidden'}>
+      <div className={activeTabs === 2 ? 'block h-auto sm:h-[800px]' : 'hidden'}>
         <Password />
       </div>
-      <div className={activeTabs === 3 ? 'block h-[800px]' : 'hidden'}>
+      <div className={activeTabs === 3 ? 'block h-auto sm:h-[800px]' : 'hidden'}>
         <HistoryBooking />
       </div>
     </div>
