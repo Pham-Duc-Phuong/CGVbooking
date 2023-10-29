@@ -117,7 +117,7 @@ export const HomeTemplate = () => {
           <h1 className="text-2xl dark:text-white">Hệ thống rạp</h1>
           <div className="flex flex-wrap justify-center items-center gap-[30px]">
             {
-              !LayThongTinLichChieuPhim?.heThongRapChieu.length ? <div className="inline-flex items-center justify-center w-full"><hr className="w-[500px] h-1 my-8 bg-gray-200 border-0 rounded dark:bg-gray-700" /><div className="fixed font-[600] text-xl px-4 -translate-x-1/2 bg-white left-1/2 dark:bg-gray-800 dark:text-gray-400">Không có lịch chiếu</div>
+              !LayThongTinLichChieuPhim?.heThongRapChieu.length ? <div className="inline-flex items-center justify-center w-full"><hr className="w-[500px] h-1 my-8 bg-gray-200 border-0 rounded dark:bg-gray-700" /><div className="fixed font-[600] text-sm sm:text-xl px-4 -translate-x-1/2 bg-white left-1/2 dark:bg-gray-800 dark:text-gray-400">Không có lịch chiếu</div>
               </div> : LayThongTinLichChieuPhim?.heThongRapChieu?.map((a, index) => {
                 return (
                   <li key={index} className="heThongRap flex flex-col items-center p-5" onClick={() => {
