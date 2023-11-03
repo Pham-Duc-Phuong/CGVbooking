@@ -16,7 +16,6 @@ export const BookingTemplate = () => {
     useEffect(() => {
         dispatch(LayDanhSachPhongVeThunk(bookingID))
     }, [dispatch, bookingID])
-    // const { userLogin } = useAppSelector(state => state.quanLyNguoiDung)
     const { LayDanhSachPhongVe, bookingChair } = useAppSelector(state => state.QuanLyDatVe)
     const thongTinPhim = LayDanhSachPhongVe?.thongTinPhim
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -33,7 +32,6 @@ export const BookingTemplate = () => {
         } catch (error) {
             toast.error(error?.response?.data?.content)
         }
-        // className={cn('absolute w-[300px] z-[1000] right-1/2 top-1/2 translate-x-1/2', { 'hidden': payBankType === true })}
     }
     return (
         <div className="max-w-screen-2xl m-auto px-[10px] md:px-[30px] py-[30px] sm:py-[60px] ">

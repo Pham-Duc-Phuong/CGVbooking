@@ -33,9 +33,9 @@ export const Password = () => {
   }
   return (
     <form className="mt-3" onSubmit={handleSubmit(setSubmit)}>
-      <Input colorLabel="black" className="input" label="Mật khẩu" placeholder="Mật khẩu" id="matKhau" error={errors?.matKhau?.message} register={register} />
-      <Input colorLabel="black" className="input" label="Mật khẩu mới" placeholder="Mật khẩu mới" id="matKhauChange1" error={errors?.matKhauChange1?.message} register={register} />
-      <Input colorLabel="black" className="input" label="Nhập lại mật khẩu mới" placeholder="Nhập lại mật khẩu mới" id="matKhauChange2" error={errors?.matKhauChange2?.message} register={register} />
+      <Input colorLabel="black" type='password' className="input" label="Mật khẩu" placeholder="Mật khẩu" id="matKhau" error={errors?.matKhau?.message} register={register} />
+      <Input colorLabel="black" type='password' className="input" label="Mật khẩu mới" placeholder="Mật khẩu mới" id="matKhauChange1" error={errors?.matKhauChange1?.message} register={register} />
+      <Input colorLabel="black" type='password' className="input" label="Nhập lại mật khẩu mới" placeholder="Nhập lại mật khẩu mới" id="matKhauChange2" error={errors?.matKhauChange2?.message} register={register} />
       <Button htmlType="submit" className="btn-register">Đổi mật khẩu</Button>
     </form>
   )
