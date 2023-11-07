@@ -10,7 +10,7 @@ export const AdminTemplate = () => {
   return (
     <div className="mt-[30px] max-w-screen-2xl m-auto p-[20px]">
       <div>
-        <ul className="max-w-screen-2xl flex flex-wrap text-sm font-medium text-center text-gray-500 dark:text-gray-400 border-b pb-[15px]">
+        <ul className="max-w-screen-2xl flex flex-wrap gap-2 text-sm font-medium text-center text-gray-500 dark:text-gray-400 border-b pb-[15px]">
           <li className="mr-2">
             <a href="#" className={activeTabs === 1 ? 'tabs-info-active' : 'tabs-info'} onClick={() => ActiveTabs(1)}>Thêm tài khoản</a>
           </li>

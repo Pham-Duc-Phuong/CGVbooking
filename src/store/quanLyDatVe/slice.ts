@@ -5,6 +5,7 @@ import { LayDanhSachPhongVeThunk } from ".";
 type QuanLyDatVeInitialSlice = {
     LayDanhSachPhongVe?: LayDanhSachPhongVe
     bookingChair?: danhSachGhe[]
+    isLoadingBooking?: boolean
 }
 
 const initialState: QuanLyDatVeInitialSlice = {
@@ -39,6 +40,13 @@ const QuanLyDatVeSlice = createSlice({
         builder
             .addCase(LayDanhSachPhongVeThunk.fulfilled, (state, { payload }) => {
                 state.LayDanhSachPhongVe = payload
+                state.isLoadingBooking = false
+            })
+            .addCase(LayDanhSachPhongVeThunk.pending, (state) => {
+                state.isLoadingBooking = true
+            })
+            .addCase(LayDanhSachPhongVeThunk.rejected, (state) => {
+                state.isLoadingBooking = false
             })
     },
 })

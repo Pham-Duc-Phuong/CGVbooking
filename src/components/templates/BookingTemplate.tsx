@@ -9,6 +9,7 @@ import { QuanLyDatVeServices } from "services"
 import { toast } from "react-toastify"
 import { Modal } from "antd"
 import { xIconSVG } from "constant"
+import { Loading } from "components"
 
 export const BookingTemplate = () => {
     const dispatch = useAppDispatch()
@@ -16,7 +17,7 @@ export const BookingTemplate = () => {
     useEffect(() => {
         dispatch(LayDanhSachPhongVeThunk(bookingID))
     }, [dispatch, bookingID])
-    const { LayDanhSachPhongVe, bookingChair } = useAppSelector(state => state.QuanLyDatVe)
+    const { LayDanhSachPhongVe, bookingChair, isLoadingBooking } = useAppSelector(state => state.QuanLyDatVe)
     const thongTinPhim = LayDanhSachPhongVe?.thongTinPhim
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [khuyenMai, setKhuyenMai] = useState<number>(0)
@@ -32,6 +33,11 @@ export const BookingTemplate = () => {
         } catch (error) {
             toast.error(error?.response?.data?.content)
         }
+    }
+    if (isLoadingBooking) {
+        return (
+            <Loading />
+        )
     }
     return (
         <div className="max-w-screen-2xl m-auto px-[10px] md:px-[30px] py-[30px] sm:py-[60px] ">

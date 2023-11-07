@@ -6,6 +6,7 @@ import cn from 'classnames'
 import ReactPlayer from "react-player"
 import { LayThongTinLichChieuPhimThunk } from "store/quanLyRap"
 import { PATH } from "constant"
+import { Loading } from "components"
 
 export const DetailMovieTemplate = () => {
   const { movieID } = useParams()
@@ -16,7 +17,7 @@ export const DetailMovieTemplate = () => {
     dispatch(LayThongTinPhimThunk(movieID))
     dispatch(LayThongTinLichChieuPhimThunk(Number(movieID)))
   }, [dispatch, movieID])
-  const { ThongTinPhim } = useAppSelector(state => state.QuanLyPhim)
+  const { ThongTinPhim, isLoadingPhim } = useAppSelector(state => state.QuanLyPhim)
   const { LayThongTinLichChieuPhim } = useAppSelector(state => state.QuanLyRap)
   const { accessToken } = useAppSelector(state => state.quanLyNguoiDung)
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -37,6 +38,7 @@ export const DetailMovieTemplate = () => {
   } else {
     widthTrailer = 640
   }
+  if (isLoadingPhim) { return (<Loading />) }
   return (
     <div className="max-w-screen-xl h-auto sm:h-screen m-auto px-5 py-6 sm:p-[30px]">
       <div className="max-w-screen-md w-full m-auto flex flex-col items-start bg-white border border-gray-200 rounded-lg shadow dark:border-gray-700 dark:bg-gray-800">

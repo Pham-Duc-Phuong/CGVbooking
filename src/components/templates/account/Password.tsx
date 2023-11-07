@@ -18,6 +18,8 @@ export const Password = () => {
   const setSubmit: SubmitHandler<PasswordSchemaType> = async (values) => {
     if (values.matKhau === updateUser.matKhau && values.matKhauChange1 === values.matKhauChange2) {
       const doiMatKhau = { ...updateUser, matKhau: values.matKhauChange1 }
+      console.log('updateUser', updateUser)
+      console.log('doiMatKhau', doiMatKhau)
       try {
         await quanLyNguoiDungServices.CapNhatThongTinNguoiDung(doiMatKhau)
         dispatch(ThongTinTaiKhoanThunk())

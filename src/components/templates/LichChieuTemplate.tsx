@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from 'store';
 import { LayThongTinLichChieuHeThongRapThunk, LayThongTinLichChieuPhimThunk } from 'store/quanLyRap';
 import { generatePath, useNavigate } from 'react-router-dom'
 import { PATH } from 'constant';
+import { Loading } from 'components';
 
 export const LichChieuTemplate = () => {
     const dispatch = useAppDispatch()
@@ -20,13 +21,14 @@ export const LichChieuTemplate = () => {
         dispatch(LayThongTinLichChieuHeThongRapThunk(chonMaNhom))
         dispatch(LayThongTinLichChieuPhimThunk(maPhimlayThongTinLichChieuPhim))
     }, [dispatch, chonMaNhom, maPhimlayThongTinLichChieuPhim])
-    const { ThongTinLichChieuHeThongRap, LayThongTinLichChieuPhim } = useAppSelector(state => state.QuanLyRap)
+    const { ThongTinLichChieuHeThongRap, LayThongTinLichChieuPhim, isLoadingRap } = useAppSelector(state => state.QuanLyRap)
     const { accessToken } = useAppSelector(state => state.quanLyNguoiDung)
     const listCumRap = ThongTinLichChieuHeThongRap?.find(a => a?.maHeThongRap === chonMaHeThongRap)
     const listDanhSach = listCumRap?.lstCumRap.find(a => a.maCumRap === chonMaCumRap)
     const listLichChieu = listDanhSach?.danhSachPhim?.find(a => a.maPhim === chonMaPhim)
     const LayThongTinLichChieuPhimTheoMaHeThongChieu = LayThongTinLichChieuPhim?.heThongRapChieu?.find(a => a.maHeThongRap === chonMaHeThongRap)
     const LayThongTinLichChieuPhimTheoMaCumRap = LayThongTinLichChieuPhimTheoMaHeThongChieu?.cumRapChieu?.find(a => a.maCumRap === chonMaCumRap)
+    if (isLoadingRap) { return (<Loading />) }
     return (
         <div className='max-w-screen-2xl m-auto p-[30px] sm:py-[20px] sm:px-[40px]'>
             <div className='flex justify-between gap-[10px] sm:gap-[30px]'>

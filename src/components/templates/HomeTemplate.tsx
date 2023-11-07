@@ -10,6 +10,7 @@ import { LayDanhSachPhimThunk } from 'store/quanLyPhim';
 import { useNavigate, generatePath } from 'react-router-dom';
 import { PATH } from 'constant';
 import { LayThongTinLichChieuPhimThunk } from 'store/quanLyRap';
+import { Loading } from 'components';
 
 export const HomeTemplate = () => {
   const dispatch = useAppDispatch()
@@ -23,7 +24,7 @@ export const HomeTemplate = () => {
     dispatch(LayDanhSachPhimThunk(chonMaNhom))
     dispatch(LayThongTinLichChieuPhimThunk(maPhim))
   }, [dispatch, chonMaNhom, maPhim])
-  const { LayDanhSachPhim } = useAppSelector(state => state.QuanLyPhim)
+  const { LayDanhSachPhim, isLoadingPhim } = useAppSelector(state => state.QuanLyPhim)
   const { LayThongTinLichChieuPhim } = useAppSelector(state => state.QuanLyRap)
   const { accessToken } = useAppSelector(state => state.quanLyNguoiDung)
   const locLayDanhSachPhim = LayDanhSachPhim?.filter(a => a.tenPhim.toLowerCase().includes(locPhimTheoTen.toLowerCase()))
@@ -32,6 +33,7 @@ export const HomeTemplate = () => {
   const [isOpenLichChieu, setIsOpenLichChieu] = useState(false)
   const cumRapChieuPhim = LayThongTinLichChieuPhim?.heThongRapChieu?.find(a => a.maHeThongRap === chonMaHeThongRap)
   const lichChieuPhin = cumRapChieuPhim?.cumRapChieu?.find(a => a.maCumRap === chonMaCumRap)
+  if (isLoadingPhim) { return (<Loading />) }
   return (
     <div>
       <Swiper
@@ -41,7 +43,7 @@ export const HomeTemplate = () => {
         spaceBetween={0}
         slidesPerView={1}
         onSlideChange={() => console.log()}
-        onSwiper={(swiper) => console.log(swiper)}
+        onSwiper={(swiper) => console.log()}
         autoplay={{
           delay: 2000,
           disableOnInteraction: false
