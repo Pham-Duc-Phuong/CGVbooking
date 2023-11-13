@@ -33,7 +33,6 @@ export const HomeTemplate = () => {
   const [isOpenLichChieu, setIsOpenLichChieu] = useState(false)
   const cumRapChieuPhim = LayThongTinLichChieuPhim?.heThongRapChieu?.find(a => a.maHeThongRap === chonMaHeThongRap)
   const lichChieuPhin = cumRapChieuPhim?.cumRapChieu?.find(a => a.maCumRap === chonMaCumRap)
-  if (isLoadingPhim) { return (<Loading />) }
   return (
     <div>
       <Swiper
