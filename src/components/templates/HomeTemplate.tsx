@@ -14,7 +14,7 @@ import { Loading } from 'components';
 
 export const HomeTemplate = () => {
   const dispatch = useAppDispatch()
-  const [chonMaNhom, setChonMaNhom] = useState('GP09')
+  const [chonMaNhom, setChonMaNhom] = useState('GP01')
   const [locPhimTheoTen, setLocPhimTheoTen] = useState('')
   const navigate = useNavigate()
   const [maPhim, setMaPhim] = useState<number>()
