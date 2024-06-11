@@ -40,7 +40,7 @@ export const DetailMovieTemplate = () => {
   }
   if (isLoadingPhim) { return (<Loading />) }
   return (
-    <div className="max-w-screen-xl h-auto sm:h-screen m-auto px-5 py-6 sm:p-[30px]">
+    <div className="max-w-screen-xl h-screen sm:h-auto m-auto px-5 py-6 sm:p-[30px]">
       <div className="max-w-screen-md w-full m-auto flex flex-col items-start bg-white border border-gray-200 rounded-lg shadow dark:border-gray-700 dark:bg-gray-800">
         <div className="flex flex-col sm:flex-row items-center">
           <img className="object-cover p-2 w-[200px] h-full" src={ThongTinPhim?.hinhAnh} alt='' />
