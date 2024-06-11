@@ -58,7 +58,7 @@ export const HomeTemplate = () => {
         <div className='flex justify-between gap-[10px] sm:gap-[30px]'>
           <form className='my-[15px] w-[40%]'>
             <label htmlFor="setMaNhom" className={cn("label", { "text-black": 'bg-white' })}>Mã nhóm</label>
-            <select id="setMaNhom" className='input' defaultValue={"GP09"} onChange={(event) => { setChonMaNhom(event.target.value) }}>
+            <select id="setMaNhom" className='input' defaultValue={"GP01"} onChange={(event) => { setChonMaNhom(event.target.value) }}>
               <option value="GP01">GP01</option>
               <option value="GP02">GP02</option>
               <option value="GP03">GP03</option>
